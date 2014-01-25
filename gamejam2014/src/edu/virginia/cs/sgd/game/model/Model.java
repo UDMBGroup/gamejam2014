@@ -28,9 +28,9 @@ public class Model {
 
 		this.readInFile();
 		
-		Character programmer = new Character("John Nicholson", 0, new Point(0, 0), this.evidenceList, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", 1, new Point(0, 0), this.evidenceList, this.initialIsShown);
-		Character writer = new Character("Annie N.", 2, new Point(0, 0), this.evidenceList, this.initialIsShown);
+		Character programmer = new Character("John Nicholson", "0", new Point(0, 0), this.evidenceList, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", "1", new Point(0, 0), this.evidenceList, this.initialIsShown);
+		Character writer = new Character("Annie N.", "2", new Point(0, 0), this.evidenceList, this.initialIsShown);
 
 	}
 	
@@ -79,8 +79,8 @@ public class Model {
 		return mapHeight;
 	}
 
-	public String getMonologue(String evidence, int character) {
-		return evidenceTable.get(evidence).get(character);
+	public String getMonologue(String evidence, String character) {
+		return evidenceTable.get(evidence).get(Integer.parseInt(character));
 	}
 	
 	public void move(String character, Direction dir) {
