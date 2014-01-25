@@ -1,31 +1,77 @@
 package edu.virginia.cs.sgd.game.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-import com.badlogic.gdx.graphics.g2d.tiled.TiledMap;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class Model {
 
+	private Scanner fileIn;
+	private File modelData;
 	private TiledMap map;
 	private ArrayList<String> evidenceList;
 	private Map<String, ArrayList<String>> evidenceTable;
+	private Map<String, Integer> characters;
 
 	public Model(TiledMap map) {
 		this.map = map;
 		evidenceList = new ArrayList<String>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
+		characters = new HashMap<String, Integer>(3);
 		
-//		evidenceList.add("");
+		characters.put("p", 0);
+		characters.put("a", 1);
+		characters.put("w", 2);
+
+		try {
+			modelData = new File("ModelData.txt");
+			fileIn = new Scanner(modelData);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		int count = 1;
+		ArrayList<String> temp = new ArrayList<String>();
+
+		while (fileIn.hasNextLine()) {
+			if (count % 5 == 0 && count > 0) {
+				fileIn.nextLine();
+			} else if ((count-1) % 5 == 0) {
+				evidenceList.add(fileIn.nextLine());
+			} else {
+				temp.add(fileIn.nextLine());
+			}
+			if (temp.size() == 3) {
+				evidenceTable.put(evidenceList.get(((count-1)/5)), temp);
+				temp = new ArrayList<String>();
+			}
+			count++;
+		}
 		
-//		for (String ev; evidenceList) {
-//			evidenceTable.put(ev, )
-//		}
+		fileIn.close();
+
 	}
 
 	public static void main(String[] args) {
+//		Model test = new Model(null);
+//		System.out.println(test.evidenceTable);
+	}
 
+	public int getMapWidth() {
+		MapProperties prop = map.getProperties();
+		int mapWidth = prop.get("width", Integer.class);
+		return mapWidth;
+	}
+
+	public int getMapHeight() {
+		MapProperties prop = map.getProperties();
+		int mapHeight = prop.get("height", Integer.class);
+		return mapHeight;
 	}
 
 }
