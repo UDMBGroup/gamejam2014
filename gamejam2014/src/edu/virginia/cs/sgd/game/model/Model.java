@@ -18,6 +18,7 @@ public class Model {
 	private File modelData;
 	private TiledMap map;
 	private ArrayList<String> evidenceList;
+	private ArrayList<String> initialIsShown;
 	private Map<String, ArrayList<String>> evidenceTable;
 
 	public Model(TiledMap map) {
@@ -27,9 +28,9 @@ public class Model {
 
 		this.readInFile();
 		
-		Character programmer = new Character("John Nicholson", 0, new Point(0, 0), this.evidenceList);
-		Character artist = new Character("Scarlet Velvet", 1, new Point(0, 0), this.evidenceList);
-		Character writer = new Character("Annie N.", 2, new Point(0, 0), this.evidenceList);
+		Character programmer = new Character("John Nicholson", 0, new Point(0, 0), this.evidenceList, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", 1, new Point(0, 0), this.evidenceList, this.initialIsShown);
+		Character writer = new Character("Annie N.", 2, new Point(0, 0), this.evidenceList, this.initialIsShown);
 
 	}
 	
@@ -45,7 +46,7 @@ public class Model {
 
 		while (fileIn.hasNextLine()) {
 			if (count % 5 == 0 && count > 0) {
-				fileIn.nextLine();
+				initialIsShown.add(fileIn.nextLine());
 			} else if ((count-1) % 5 == 0) {
 				evidenceList.add(fileIn.nextLine());
 			} else {
