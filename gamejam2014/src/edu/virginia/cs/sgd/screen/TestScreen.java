@@ -10,20 +10,28 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import edu.virginia.cs.sgd.game.controller.Controller;
+import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 
 public class TestScreen extends AbstractScreen {
+	private Controller controller;
+	
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
 	
+	private TextureRegion sample;
+	
 	@Override
-	public void show() {		
+	public void show() {	
+		controller = new Controller();
+		
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		
-		camera = new OrthographicCamera(1, h/w);
+		camera = new OrthographicCamera();
 		batch = new SpriteBatch();
 		
 		texture = SingletonAssetManager.getInstance().get("LibGDX");
@@ -35,6 +43,10 @@ public class TestScreen extends AbstractScreen {
 		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		
+		Texture tex = SingletonAssetManager.getInstance().get("sample");
+		sample = new TextureRegion(tex, 0, 0, 32, 32);
+		
 	}
 
 	@Override
@@ -48,9 +60,13 @@ public class TestScreen extends AbstractScreen {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		batch.setProjectionMatrix(camera.combined);
+//		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		sprite.draw(batch);
+		//sprite.draw(batch);
+
+		Point p = controller.getPoint();
+		batch.draw(sample, (float) p.getX() * 32, (float) p.getY() * 32);
+		
 		batch.end();
 	}
 
@@ -67,7 +83,7 @@ public class TestScreen extends AbstractScreen {
 
 	@Override
 	public void keyUp(int keyCode) {
-		
+		controller.onKeyPress(keyCode);
 	}
 
 	@Override
