@@ -17,17 +17,17 @@ public class Model {
 	private TiledMap map;
 	private ArrayList<String> evidenceList;
 	private Map<String, ArrayList<String>> evidenceTable;
-	private Map<String, Integer> characters;
+	private Map<String, Integer> charAssignment;
 
 	public Model(TiledMap map) {
 		this.map = map;
 		evidenceList = new ArrayList<String>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
-		characters = new HashMap<String, Integer>(3);
+		charAssignment = new HashMap<String, Integer>(3);
 		
-		characters.put("p", 0);
-		characters.put("a", 1);
-		characters.put("w", 2);
+		charAssignment.put("programmer", 0);
+		charAssignment.put("artist", 1);
+		charAssignment.put("writer", 2);
 
 		try {
 			modelData = new File("ModelData.txt");
@@ -74,4 +74,7 @@ public class Model {
 		return mapHeight;
 	}
 
+	public String getMonologue(String evidence, String character) {
+		return evidenceTable.get(evidence).get(charAssignment.get(character));
+	}
 }
