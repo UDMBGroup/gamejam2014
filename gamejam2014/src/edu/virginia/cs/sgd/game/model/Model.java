@@ -86,4 +86,8 @@ public class Model {
 	public void move(String character, Direction dir) {
 		
 	}
+	
+	public void interact(String character, Direction dir) {
+		
+	}
 }

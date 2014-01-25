@@ -20,4 +20,13 @@ public class Level {
 		c.onKeyPress(m, keyCode);
 	}
 	
+	public void update() {
+		
+		
+		
+	}
+	
+	public void render() {
+		
+	}
 }
