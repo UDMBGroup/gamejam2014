@@ -9,20 +9,20 @@ import edu.virginia.cs.sgd.util.Point;
 public class Character {
 
 	private String name;
-	private int charAssignment;
+	private String charAssignment;
 	private Point pos;
 	private Map<String, Integer> isCollected;
 	private Map<String, Integer> isShown;
 
 	public Character() {
 		this.name = "";
-		this.charAssignment = -1;
+		this.charAssignment = "";
 		this.pos = null;
 		this.isCollected = null;
 		this.isShown = null;
 	}
 
-	public Character(String name, int charAssignment, Point pos,
+	public Character(String name, String charAssignment, Point pos,
 			ArrayList<String> evidenceList, ArrayList<String> initialIsShown) {
 		this.name = name;
 		this.charAssignment = charAssignment;
@@ -33,10 +33,9 @@ public class Character {
 			isCollected.put(s, 0);
 		}
 		for (int i = 0; i < evidenceList.size(); i++) {
-			String[] temp = initialIsShown.get(i).split(",");
-			String charAssign = Integer.toString(charAssignment);
-			if (temp[0] == charAssign || temp[1] == charAssign
-					|| temp[2] == charAssign) {
+			String[] temp = initialIsShown.get(i).trim().split(",");
+			if (temp[0] == charAssignment || temp[1] == charAssignment
+					|| temp[2] == charAssignment) {
 				isShown.put(evidenceList.get(i), 1);
 			} else {
 				isShown.put(evidenceList.get(i), 0);
