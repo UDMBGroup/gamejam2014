@@ -1,66 +1,89 @@
 package edu.virginia.cs.sgd;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Program implements ApplicationListener {
-	private OrthographicCamera camera;
-	private SpriteBatch batch;
-	private Texture texture;
-	private Sprite sprite;
+import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Texture;
+
+import edu.virginia.cs.sgd.input.Input;
+import edu.virginia.cs.sgd.screen.AbstractScreen;
+import edu.virginia.cs.sgd.screen.TestScreen;
+import edu.virginia.cs.sgd.util.SingletonAssetManager;
+
+public class Program extends Game implements ApplicationListener {
+	
+	public static final String LOG = Program.class.getName(); //GameOfSwords.class.getSimpleName();
+
+	private Input input;
+	private AbstractScreen screen;
 	
 	@Override
-	public void create() {		
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
+	public void create() {
+		input = new Input();
+		Texture.setEnforcePotImages(false);
 		
-		camera = new OrthographicCamera(1, h/w);
-		batch = new SpriteBatch();
-		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
-		
-		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		loadImmediateAssets();
+		loadAssets();
+		createScreen(TestScreen.class);
+//		createScreen(MapScreen.class);
 	}
-
+	
 	@Override
 	public void dispose() {
-		batch.dispose();
-		texture.dispose();
+		super.dispose();
 	}
 
 	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		sprite.draw(batch);
-		batch.end();
+	public void render() {
+		Class<? extends AbstractScreen> newScreen = screen.checkScreenChange();
+		if(newScreen != null) {
+			createScreen(newScreen);
+		}
+		super.render();
+
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		super.resize(width, height);
 	}
 
 	@Override
 	public void pause() {
+		super.pause();
 	}
 
 	@Override
 	public void resume() {
+		super.resume();
+	}
+	
+	private void createScreen(Class<? extends AbstractScreen> type) {
+		screen = null;
+		try {
+			screen = type.newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return;
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		input.setListener(screen);
+		setScreen(screen);
+	}
+	
+	private void loadImmediateAssets() {
+
+		SingletonAssetManager m = SingletonAssetManager.getInstance();
+		m.load("LibGDX", "data/libgdx.png", Texture.class);
+		m.finishLoading();
+		
+	}
+	
+	private void loadAssets() {
+		//SingletonAssetManager m = SingletonAssetManager.getInstance();
+		
 	}
 }
