@@ -8,8 +8,8 @@ import edu.virginia.cs.sgd.util.Point;
 
 public class Character {
 
-	private String name;
-	private String charAssignment;
+	final private String name;
+	final private String charAssignment;
 	private Point pos;
 	private Map<String, Integer> isCollected;
 	private Map<String, Integer> isShown;
@@ -69,6 +69,14 @@ public class Character {
 
 	public boolean getIsShown(String evidence) {
 		return isShown.get(evidence) == 1;
+	}
+	
+	public Point getPos() {
+		return pos;
+	}
+	
+	public void setPos(Point pos) {
+		this.pos = pos;
 	}
 
 }

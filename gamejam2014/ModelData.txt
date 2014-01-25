@@ -2,7 +2,7 @@ the corpse
 -
 -
 -
-
+0,1
 scotch glass
 -
 -
@@ -43,4 +43,19 @@ missing weapon
 -
 -
 
+John
+-
+-
+-
+0,1,2
+Scarlet
+-
+-
+-
+0,1,2
+Annie
+-
+-
+-
+0,1,2
 
