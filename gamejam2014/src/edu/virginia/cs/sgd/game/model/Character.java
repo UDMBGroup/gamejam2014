@@ -32,7 +32,7 @@ public class Character {
 			isCollected.put(s, 0);
 		}
 		for (String s: evidenceList) {
-			isCollected.put(s, 0);
+			isShown.put(s, 0);
 		}
 	}
 	
