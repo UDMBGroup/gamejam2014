@@ -10,6 +10,8 @@ import java.util.Scanner;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import edu.virginia.cs.sgd.util.Point;
+
 public class Model {
 
 	private Scanner fileIn;
@@ -17,18 +19,21 @@ public class Model {
 	private TiledMap map;
 	private ArrayList<String> evidenceList;
 	private Map<String, ArrayList<String>> evidenceTable;
-	private Map<String, Integer> charAssignment;
 
 	public Model(TiledMap map) {
 		this.map = map;
 		evidenceList = new ArrayList<String>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
-		charAssignment = new HashMap<String, Integer>(3);
-		
-		charAssignment.put("programmer", 0);
-		charAssignment.put("artist", 1);
-		charAssignment.put("writer", 2);
 
+		this.readInFile();
+		
+		Character programmer = new Character("John Nicholson", 0, new Point(0, 0), this.evidenceList);
+		Character artist = new Character("Scarlet Velvet", 1, new Point(0, 0), this.evidenceList);
+		Character writer = new Character("Annie N.", 2, new Point(0, 0), this.evidenceList);
+
+	}
+	
+	public void readInFile() {
 		try {
 			modelData = new File("ModelData.txt");
 			fileIn = new Scanner(modelData);
@@ -54,7 +59,6 @@ public class Model {
 		}
 		
 		fileIn.close();
-
 	}
 
 	public static void main(String[] args) {
@@ -74,7 +78,8 @@ public class Model {
 		return mapHeight;
 	}
 
-	public String getMonologue(String evidence, String character) {
-		return evidenceTable.get(evidence).get(charAssignment.get(character));
+	public String getMonologue(String evidence, int character) {
+		return evidenceTable.get(evidence).get(character);
 	}
+	
 }
