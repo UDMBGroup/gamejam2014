@@ -3,37 +3,34 @@ package edu.virginia.cs.sgd.game.controller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
-import edu.virginia.cs.sgd.util.Point;
+import edu.virginia.cs.sgd.game.model.Direction;
+import edu.virginia.cs.sgd.game.model.Model;
 
 public class Controller {
-
-	int x, y;
 	
-	public Controller() {
-		x = 5;
-		y = 5;
-	}
+	public String activePlayer;
 	
-	public void onKeyPress(int keyCode) {
+	public void onKeyPress(Model m, int keyCode) {
 		Gdx.app.log(this.getClass().getName(), "Key: " + Input.Keys.toString(keyCode));
 		
 		switch(keyCode) {
+		case Input.Keys.W:
 		case Input.Keys.UP:
-			y++;
+			m.move(activePlayer, Direction.NORTH);
 			break;
+		case Input.Keys.S:
 		case Input.Keys.DOWN:
-			y--;
+			m.move(activePlayer, Direction.SOUTH);
 			break;
+		case Input.Keys.A:
 		case Input.Keys.LEFT:
-			x--;
+			m.move(activePlayer, Direction.WEST);
 			break;
+		case Input.Keys.D:
 		case Input.Keys.RIGHT:
-			x++;
+			m.move(activePlayer, Direction.EAST);
 			break;
 		}
 	}
-	
-	public Point getPoint() {
-		return new Point(x, y);
-	}
+
 }

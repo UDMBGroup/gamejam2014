@@ -23,6 +23,6 @@ public class GameScreen extends AbstractScreen {
 	
 	@Override
 	public void keyUp(int keyCode) {
-		
+		level.onKeyPress(keyCode);
 	}
 }
