@@ -9,7 +9,7 @@ public class Level {
 	
 	private Model m;
 	private Controller c;
-
+	
 	public Level(TiledMap map) {
 		m = new Model(map);
 		c = new Controller();

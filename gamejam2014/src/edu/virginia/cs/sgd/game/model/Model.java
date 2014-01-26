@@ -12,6 +12,8 @@ import java.util.Scanner;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
 import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.viewer.RenderData;
@@ -25,6 +27,8 @@ public class Model {
 	private ArrayList<String> initialIsShown;
 	private Map<String, ArrayList<String>> evidenceTable;
 
+	private Map<String, Character> characters;
+	
 	public Model(TiledMap map) {
 		this.map = map;
 		
@@ -40,10 +44,14 @@ public class Model {
 
 		this.readInFile();
 		
+		characters = new HashMap<String, Character>();
 		Character programmer = new Character("John Nicholson", "0", new Point(0, 0), this.evidenceList, this.initialIsShown);
 		Character artist = new Character("Scarlet Velvet", "1", new Point(0, 0), this.evidenceList, this.initialIsShown);
 		Character writer = new Character("Annie N.", "2", new Point(0, 0), this.evidenceList, this.initialIsShown);
 
+		characters.put("programmer", programmer);
+		characters.put("artist", artist);
+		characters.put("writer", writer);
 	}
 	
 	public void readInFile() {
@@ -97,8 +105,31 @@ public class Model {
 	
 	public void move(String character, Direction dir) {
 
-//		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
-//				.getCell(newX, newY);
+		Point p = characters.get(character).getPos();
+		int newX = p.getX();
+		int newY = p.getY();
+		
+		switch(dir) {
+		case NORTH:
+			newY++;
+			break;
+		case SOUTH:
+			newY--;
+			break;
+		case EAST:
+			newX++;
+			break;
+		case WEST:
+			newX--;
+			break;
+		}
+		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
+				.getCell(newX, newY);
+		
+		if(c == null) {
+			p.setX(newX);
+			p.setY(newY);
+		}
 	}
 	
 	public void interact(String character, Direction dir) {
