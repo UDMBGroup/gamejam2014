@@ -11,15 +11,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
+import edu.virginia.cs.sgd.viewer.Viewer;
 
 public class TestScreen extends AbstractScreen {
+	/*
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
+	*/
+	private Viewer viewer;
 	
 	@Override
-	public void show() {		
+	public void show() {	
+		/*
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		
@@ -35,16 +40,22 @@ public class TestScreen extends AbstractScreen {
 		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		*/
+		viewer = new Viewer();
 	}
 
 	@Override
 	public void dispose() {
+		/*
 		batch.dispose();
 		texture.dispose();
+		*/
+		viewer.dispose();
 	}
 
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {
+		/*
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
@@ -52,11 +63,12 @@ public class TestScreen extends AbstractScreen {
 		batch.begin();
 		sprite.draw(batch);
 		batch.end();
+		*/
+		viewer.renderView();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		
 		//viewer.resize(width, height);
 	}
 

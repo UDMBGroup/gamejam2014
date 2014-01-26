@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 
 import edu.virginia.cs.sgd.util.Point;
+import edu.virginia.cs.sgd.util.SingletonAssetManager;
 
 public class Viewer {
 
@@ -25,8 +26,15 @@ public class Viewer {
 		camera = new OrthographicCamera();
 		batch = new SpriteBatch();
 		currentCenter = new Point(0, 0);
-		//mapRenderer = new GameMapRenderer(map);	//get tiled map
+		//TiledMap tMap = SingletonAssetManager.getInstance().get("TestMap");
+		//mapRenderer = new GameMapRenderer(tMap);	//get tiled map
 		
+	}
+	
+	public void dispose()
+	{
+		batch.dispose();
+		//mapRenderer.dispose();
 	}
 	
 	public void updateCamera(Point characterPosition)
@@ -46,7 +54,8 @@ public class Viewer {
 		batch.begin();
 
 		// map renderer
-		mapRenderer.render();
+		//mapRenderer.setView(camera);
+		//mapRenderer.render();
 
 		// draw game objects		
 		// for each object

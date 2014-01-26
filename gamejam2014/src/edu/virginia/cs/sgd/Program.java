@@ -4,6 +4,7 @@ package edu.virginia.cs.sgd;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import edu.virginia.cs.sgd.input.Input;
 import edu.virginia.cs.sgd.screen.AbstractScreen;
@@ -78,6 +79,7 @@ public class Program extends Game implements ApplicationListener {
 
 		SingletonAssetManager m = SingletonAssetManager.getInstance();
 		m.load("LibGDX", "data/libgdx.png", Texture.class);
+		//m.load("TestMap", "map_Entrance.tmx", TiledMap.class);
 		m.finishLoading();
 		
 	}
