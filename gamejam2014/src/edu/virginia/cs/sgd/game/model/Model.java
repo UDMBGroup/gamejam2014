@@ -191,36 +191,30 @@ public class Model {
 						if (chara.getName().equals("John Nicholson")) {
 							chara.setShown(this.evidence.get("poison book"));
 							chara.setShown(this.evidence.get("computer"));
-							break;
 						} else if (chara.getName().equals("Annie N.")) {
 							chara.setShown(this.evidence.get("portrait"));
 							chara.setShown(this.evidence.get("paper scrap"));
-							break;
 						} else if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("snacks"));
 							chara.setShown(this.evidence.get("manuscript"));
-							break;
 						}
 					}
 					
 					if (ev.getName().equals("snacks")) {
 						if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("cable"));
-							break;
 						}
 					}
 					
 					if (ev.getName().equals("poison book")) {
 						if (chara.getName().equals("John Nicholson")) {
 							chara.setShown(this.evidence.get("scotch glass"));
-							break;
 						}
 					}
 					
 					if (ev.getName().equals("computer")) {
 						if (chara.getName().equals("John Nicholson")) {
 							chara.setShown(this.evidence.get("the purse"));
-							break;
 						}
 					}
 					
@@ -228,21 +222,18 @@ public class Model {
 						if (chara.getName().equals("Scarlet Velvet")
 								&& characters.get("John Nicholson").getIsCollected(evidence.get("computer"))) {
 							chara.setShown(this.evidence.get("computer"));
-							break;
 						}
 					}
 					
 					if (ev.getName().equals("computer")) {
 						if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("missing weapon"));
-							break;
 						}
 					}
 					
 					if (ev.getName().equals("missing weapon")) {
 						if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("the purse"));
-							break;
 						}
 					}
 					
