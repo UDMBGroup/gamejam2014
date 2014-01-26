@@ -39,7 +39,7 @@ public abstract class AbstractScreen implements Screen, InputListener {
 	public void show() {
 		Gdx.app.log(Program.LOG, "Showing screen: " + getName());
 
-        skin = SingletonAssetManager.getInstance().get("UISkin");
+//        skin = SingletonAssetManager.getInstance().get("UISkin");
 	}
 
 	@Override
