@@ -23,7 +23,7 @@ public class Model {
 	private Scanner fileIn;
 	private File modelData;
 	private TiledMap map;
-	private ArrayList<String> evidenceList;
+	private ArrayList<Evidence> evidenceList;
 	private ArrayList<String> initialIsShown;
 	private Map<String, ArrayList<String>> evidenceTable;
 
@@ -39,7 +39,7 @@ public class Model {
 			System.out.println(o.getName());
 		}
 		
-		evidenceList = new ArrayList<String>();
+		evidenceList = new ArrayList<Evidence>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
 
 		this.readInFile();
@@ -68,12 +68,12 @@ public class Model {
 			if (count % 5 == 0 && count > 0) {
 				initialIsShown.add(fileIn.nextLine());
 			} else if ((count-1) % 5 == 0) {
-				evidenceList.add(fileIn.nextLine());
+				evidenceList.add(new Evidence(fileIn.nextLine(), new Point(0,0)));
 			} else {
 				temp.add(fileIn.nextLine());
 			}
 			if (temp.size() == 3) {
-				evidenceTable.put(evidenceList.get(((count-1)/5)), temp);
+				evidenceTable.put(evidenceList.get(((count-1)/5)).getName(), temp);
 				temp = new ArrayList<String>();
 			}
 			count++;
