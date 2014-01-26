@@ -3,6 +3,7 @@ package edu.virginia.cs.sgd;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
@@ -80,6 +81,7 @@ public class Program extends Game implements ApplicationListener {
 		SingletonAssetManager m = SingletonAssetManager.getInstance();
 		m.load("LibGDX", "data/libgdx.png", Texture.class);
 		m.load("sample", "data/samplesprite.png", Texture.class);
+		m.load("BGMusic", "data/theSituationMainTheme2.wav", Music.class);
 		m.load("John Nicholson", "data/samplesprite.png", Texture.class);
 		m.load("Scarlet Velvet", "data/samplesprite.png", Texture.class);
 		m.load("Annie N.", "data/samplesprite.png", Texture.class);

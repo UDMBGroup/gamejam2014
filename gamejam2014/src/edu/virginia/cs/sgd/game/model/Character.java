@@ -21,23 +21,25 @@ public class Character extends RenderData {
 	}
 
 	public Character(String name, String charAssignment, Point pos,
-			ArrayList<Evidence> evidenceList, ArrayList<String> initialIsShown) {
+			Map<String, Evidence> evidenceList, ArrayList<String> initialIsShown) {
 		super(name, pos);
 		this.charAssignment = charAssignment;
 		this.isCollected = new HashMap<String, Integer>();
 		this.isShown = new HashMap<String, Integer>();
-		for (Evidence e : evidenceList) {
-			isCollected.put(e.getName(), 0);
+		for (String key : evidenceList.keySet()) {
+			isCollected.put(key, 0);
 		}
-		for (int i = 0; i < evidenceList.size()-1; i++) {
-			String[] temp = initialIsShown.get(i).trim().split(",");
+		int count = 0;
+		for (String key: evidenceList.keySet()) {
+			String[] temp = initialIsShown.get(count).trim().split(",");
 			for (int j = 0; j < temp.length; j++) {
 				if (temp[j] == charAssignment) {
-					isShown.put(evidenceList.get(i).getName(), 1);
+					isShown.put(evidenceList.get(key).getName(), 1);
 				} else {
-					isShown.put(evidenceList.get(i).getName(), 0);
+					isShown.put(evidenceList.get(key).getName(), 0);
 				}
 			}
+			count++;
 		}
 	}
 
