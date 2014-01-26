@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="FireRed03000" tilewidth="32" tileheight="32">
-  <image source="../../../../../../Users/Jack/Desktop/Games/Dev/Pokemon Hack/Pokemon Hack Tools/FireRed03000.bmp" width="257" height="1024"/>
- </tileset>
- <tileset firstgid="257" name="FireRed03000" tilewidth="16" tileheight="16">
-  <image source="../../../../../../Users/Jack/Desktop/Games/Dev/Pokemon Hack/Pokemon Hack Tools/FireRed03000.bmp" width="257" height="1024"/>
- </tileset>
- <tileset firstgid="1281" name="tilesheet" tilewidth="32" tileheight="32">
-  <image source="../../../../AetherForgeRepo/AetherForge-android/assets/maps/tilesheet.png" width="256" height="256"/>
+ <tileset firstgid="1" name="tilesheet" tilewidth="32" tileheight="32">
+  <image source="tilesheet.png" width="256" height="256"/>
  </tileset>
  <layer name="Collision" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJzjY2Vg4EPC1AS0MG+km0lLc4eam0eqmdQ2b9SN1DFvKLiR2uYBAGy/AuY=
+   eJzjY2Bg4EPC1AS0MG+km0lLc4eam0eqmdQ2b9SN1DFvKLiR2uYBALChAiM=
   </data>
  </layer>
  <layer name="BG" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJwTZ2VgEB/Fo3gUj+JRPIpJxAAV9yvB
+   eJwTZ2BgEB/Fo3gUj+JRPIpJxACisCPx
   </data>
  </layer>
+ <objectgroup name="Evidence" width="20" height="20">
+  <object name="test" x="32" y="32" width="32" height="32"/>
+  <object name="test2" x="226" y="34" width="32" height="32"/>
+ </objectgroup>
 </map>

@@ -4,13 +4,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import edu.virginia.cs.sgd.util.Point;
+import edu.virginia.cs.sgd.viewer.RenderData;
 
 public class Model {
 
@@ -23,6 +27,14 @@ public class Model {
 
 	public Model(TiledMap map) {
 		this.map = map;
+		
+		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
+		while(i.hasNext()) {
+			MapObject o = i.next();
+			
+			System.out.println(o.getName());
+		}
+		
 		evidenceList = new ArrayList<String>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
 
@@ -84,10 +96,16 @@ public class Model {
 	}
 	
 	public void move(String character, Direction dir) {
-		
+
+//		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
+//				.getCell(newX, newY);
 	}
 	
 	public void interact(String character, Direction dir) {
 		
+	}
+	
+	public List<RenderData> getRenderData() {
+		return new ArrayList<RenderData>();
 	}
 }
