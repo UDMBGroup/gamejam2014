@@ -3,9 +3,12 @@ package edu.virginia.cs.sgd;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.files.FileHandle;
 
 import edu.virginia.cs.sgd.input.Input;
 import edu.virginia.cs.sgd.screen.AbstractScreen;
@@ -87,6 +90,7 @@ public class Program extends Game implements ApplicationListener {
 		m.load("Annie N.", "data/write.png", Texture.class);
 		m.load("testmap", "data/test.tmx", TiledMap.class);
 		m.load("map", "data/sitmapprelim.tmx", TiledMap.class);
+		m.loadModelData("data/ModelData.txt");
 		m.finishLoading();
 		
 	}

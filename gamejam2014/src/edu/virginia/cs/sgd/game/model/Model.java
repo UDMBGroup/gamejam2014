@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -18,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
 import edu.virginia.cs.sgd.util.Point;
+import edu.virginia.cs.sgd.util.SingletonAssetManager;
 import edu.virginia.cs.sgd.viewer.RenderData;
 
 public class Model {
@@ -26,12 +29,14 @@ public class Model {
 	private File modelData;
 	private TiledMap map;
 	private Map<String, Evidence> evidenceList;
-	private ArrayList<String> initialIsShown;
+	private Map<Evidence, String> initialIsShown;
 
 	private Queue<String> players;
 	
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
+	
+	private String messageOnScreen = "Testing string...";
 
 	public Model(TiledMap map) {
 		this.map = map;
@@ -39,7 +44,7 @@ public class Model {
 		characters = new HashMap<String, Character>();
 
 		evidenceList = new HashMap<String, Evidence>();
-		initialIsShown = new ArrayList<String>();
+		initialIsShown = new HashMap<Evidence, String>();
 
 		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
 
@@ -54,7 +59,7 @@ public class Model {
 
 		}
 
-		//		this.readInFile();
+		this.readInFile();
 
 		Character programmer = new Character("John Nicholson", "0", new Point(1, 1), this.evidenceList, this.initialIsShown);
 		Character artist = new Character("Scarlet Velvet", "1", new Point(1, 3), this.evidenceList, this.initialIsShown);
@@ -71,21 +76,19 @@ public class Model {
 	}
 
 	public void readInFile() {
-		try {
-			modelData = new File("ModelData.txt");
-			fileIn = new Scanner(modelData);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		System.out.println(SingletonAssetManager.getInstance().getModelData());
+		fileIn = new Scanner(SingletonAssetManager.getInstance().getModelData().read());
 		int count = 1;
 		String current = "";
 
+		Evidence ev = null;
 		while (fileIn.hasNextLine()) {
 			if (count % 5 == 0 && count > 0) {
-				initialIsShown.add(fileIn.nextLine());
+				initialIsShown.put(ev, fileIn.nextLine());
 			} else if ((count-1) % 5 == 0) {
 				current = fileIn.nextLine();
-				evidenceList.put(current, new Evidence(current, new Point(0,0)));
+				ev = new Evidence(current, new Point(0, 0));
+				evidenceList.put(current, ev);
 			} else {
 				evidenceList.get(current).addToMonologues(fileIn.nextLine());
 			}
@@ -96,11 +99,11 @@ public class Model {
 	}
 
 	public static void main(String[] args) {
-		//		Model test = new Model(null);
-		//		for (String key: test.evidenceList.keySet()) {
-		//			System.out.println(test.evidenceList.get(key).getMonologues());
-		//		}
-		//		System.out.println(test.initialIsShown);
+//				Model test = new Model(null);
+//				for (String key: test.evidenceList.keySet()) {
+//					System.out.println(test.evidenceList.get(key).getMonologues());
+//				}
+//				System.out.println(test.initialIsShown);
 	}
 
 	public int getMapWidth() {
@@ -205,5 +208,15 @@ public class Model {
 		String top = players.poll();
 		players.add(top);
 		return players.peek();
+	}
+	
+	public String getMessageOnScreen() {
+		return messageOnScreen;
+	}
+	public void clearMessageOnScreen() {
+		messageOnScreen = "";
+	}
+	public void setMessageOnScreen(String message) {
+		messageOnScreen = message;
 	}
 }

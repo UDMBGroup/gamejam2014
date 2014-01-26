@@ -3,8 +3,10 @@ package edu.virginia.cs.sgd.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
@@ -12,6 +14,7 @@ public class SingletonAssetManager {
 
 	private Map<String, String> map;
 	private AssetManager manager;
+	private FileHandle fileHandle;
 	
 	private SingletonAssetManager() {
 		super();
@@ -43,5 +46,13 @@ public class SingletonAssetManager {
 	
 	public void finishLoading() {
 		manager.finishLoading();
+	}
+	
+	public FileHandle getModelData() {
+		return fileHandle;
+	}
+	
+	public void loadModelData(String filename) {
+		fileHandle = Gdx.files.internal(filename);
 	}
 }

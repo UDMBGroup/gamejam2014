@@ -13,15 +13,8 @@ public class Character extends RenderData {
 	private Map<String, Integer> isCollected;
 	private Map<String, Integer> isShown;
 
-	public Character() {
-		super("name", null);
-		this.charAssignment = "";
-		this.isCollected = null;
-		this.isShown = null;
-	}
-
 	public Character(String name, String charAssignment, Point pos,
-			Map<String, Evidence> evidenceList, ArrayList<String> initialIsShown) {
+			Map<String, Evidence> evidenceList, Map<Evidence, String> initialIsShown) {
 		super(name, pos);
 		this.charAssignment = charAssignment;
 		this.isCollected = new HashMap<String, Integer>();
@@ -30,13 +23,13 @@ public class Character extends RenderData {
 			isCollected.put(key, 0);
 		}
 		int count = 0;
-		for (String key: evidenceList.keySet()) {
-			String[] temp = initialIsShown.get(count).trim().split(",");
+		for (Evidence key: evidenceList.values()) {
+			String[] temp = initialIsShown.get(key).trim().split(",");
 			for (int j = 0; j < temp.length; j++) {
 				if (temp[j] == charAssignment) {
-					isShown.put(evidenceList.get(key).getName(), 1);
+					isShown.put(key.getName(), 1);
 				} else {
-					isShown.put(evidenceList.get(key).getName(), 0);
+					isShown.put(key.getName(), 0);
 				}
 			}
 			count++;
