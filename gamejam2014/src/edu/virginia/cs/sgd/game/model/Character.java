@@ -7,7 +7,7 @@ import java.util.Map;
 import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.viewer.RenderData;
 
-public class Character extends RenderData{
+public class Character extends RenderData {
 
 	final private String charAssignment;
 	private Map<String, Integer> isCollected;
@@ -29,13 +29,14 @@ public class Character extends RenderData{
 		for (Evidence e : evidenceList) {
 			isCollected.put(e.getName(), 0);
 		}
-		for (int i = 0; i < evidenceList.size(); i++) {
+		for (int i = 0; i < evidenceList.size()-1; i++) {
 			String[] temp = initialIsShown.get(i).trim().split(",");
-			if (temp[0] == charAssignment || temp[1] == charAssignment
-					|| temp[2] == charAssignment) {
-				isShown.put(evidenceList.get(i).getName(), 1);
-			} else {
-				isShown.put(evidenceList.get(i).getName(), 0);
+			for (int j = 0; j < temp.length; j++) {
+				if (temp[j] == charAssignment) {
+					isShown.put(evidenceList.get(i).getName(), 1);
+				} else {
+					isShown.put(evidenceList.get(i).getName(), 0);
+				}
 			}
 		}
 	}
