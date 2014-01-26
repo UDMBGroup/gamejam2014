@@ -1,0 +1,65 @@
+the corpse
+-It's Mr.Bigglesworth dead body. It looks like he was hit in the back of the head...
+-*sniff* Mr.Bigglesworth *sniff* Wait is that a cheeto stain on his collar?
+-Poor Mr.Bigglesworth. He was such a dear friend and was like a father to me. Why would someone slip poison into his mouth for? What was the purpose?
+0,1,2
+scotch glass
+-It's a half empty glass of scotch, Mr.Bigglesworth favorite drink. Upon further inspection, it smells like poison. Better not drink that!
+-
+-
+
+poison book
+-It's a book about poison, written by Douglas Applesteen. One of the pages is dog-eared, and it looks like there is a little bit of nail polish in the book.
+-
+-
+0
+snacks
+-
+-This detective work is making me hungry! Alright lets see here, there's pretzels, pepsi, chinese food, and an opened bag of cheetos that John brought. Oh goodness I think I'll take the chinese food!
+-
+1
+portrait
+-
+-
+-This portrait looks vaguefully familiar...Oh my god he looks just like Mr.Bigglesworth! Holy crap he must be Mr.Bigglesworth father, and he looks loaded! Come to think of it, now that Mr.Bigglesworth is dead, who is going to inherit the mansion? Scarlett Velvet was getting pretty cosy with Mr.Bigglesworth. OMG Scarlett killed Mr.Bigglesworth so she could inherit the mansion! That jerk!
+2
+cable
+-
+-
+-
+
+the purse
+-
+-
+-
+
+computer
+-
+-
+-
+0
+paper scrap
+-
+-
+-
+2
+missing weapon
+-
+-
+-
+1
+John
+-
+-
+-
+0,1,2
+Scarlet
+-
+-
+-
+0,1,2
+Annie
+-
+-
+-
+0,1,2
