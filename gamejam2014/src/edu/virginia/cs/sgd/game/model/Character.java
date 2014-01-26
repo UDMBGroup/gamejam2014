@@ -5,40 +5,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.virginia.cs.sgd.util.Point;
+import edu.virginia.cs.sgd.viewer.RenderData;
 
-public class Character {
+public class Character extends RenderData{
 
-	final private String name;
 	final private String charAssignment;
-	private Point pos;
 	private Map<String, Integer> isCollected;
 	private Map<String, Integer> isShown;
 
 	public Character() {
-		this.name = "";
+		super("name", null);
 		this.charAssignment = "";
-		this.pos = null;
 		this.isCollected = null;
 		this.isShown = null;
 	}
 
 	public Character(String name, String charAssignment, Point pos,
-			ArrayList<String> evidenceList, ArrayList<String> initialIsShown) {
-		this.name = name;
+			ArrayList<Evidence> evidenceList, ArrayList<String> initialIsShown) {
+		super(name, pos);
 		this.charAssignment = charAssignment;
-		this.pos = pos;
 		this.isCollected = new HashMap<String, Integer>();
 		this.isShown = new HashMap<String, Integer>();
-		for (String s : evidenceList) {
-			isCollected.put(s, 0);
+		for (Evidence e : evidenceList) {
+			isCollected.put(e.getName(), 0);
 		}
 		for (int i = 0; i < evidenceList.size(); i++) {
 			String[] temp = initialIsShown.get(i).trim().split(",");
 			if (temp[0] == charAssignment || temp[1] == charAssignment
 					|| temp[2] == charAssignment) {
-				isShown.put(evidenceList.get(i), 1);
+				isShown.put(evidenceList.get(i).getName(), 1);
 			} else {
-				isShown.put(evidenceList.get(i), 0);
+				isShown.put(evidenceList.get(i).getName(), 0);
 			}
 		}
 	}
@@ -70,13 +67,9 @@ public class Character {
 	public boolean getIsShown(String evidence) {
 		return isShown.get(evidence) == 1;
 	}
-	
-	public Point getPos() {
-		return pos;
-	}
-	
-	public void setPos(Point pos) {
-		this.pos = pos;
+
+	public String getCharAssignment() {
+		return charAssignment;
 	}
 
 }

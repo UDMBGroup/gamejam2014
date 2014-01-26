@@ -2,7 +2,7 @@ the corpse
 -
 -
 -
-0,1
+0,1,2
 scotch glass
 -
 -
@@ -12,13 +12,18 @@ poison book
 -
 -
 -
-
+0
 snacks
 -
 -
 -
 
 portrait
+-
+-
+-
+2
+cable
 -
 -
 -
@@ -32,17 +37,17 @@ computer
 -
 -
 -
-
+0
 paper scrap
 -
 -
 -
-
+2
 missing weapon
 -
 -
 -
-
+1
 John
 -
 -
