@@ -80,6 +80,7 @@ public class Program extends Game implements ApplicationListener {
 		SingletonAssetManager m = SingletonAssetManager.getInstance();
 		m.load("LibGDX", "data/libgdx.png", Texture.class);
 		m.load("sample", "data/samplesprite.png", Texture.class);
+		m.load("testmap", "data/test.tmx", TiledMap.class);
 		m.finishLoading();
 		
 	}

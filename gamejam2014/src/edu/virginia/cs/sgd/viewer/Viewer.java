@@ -43,13 +43,19 @@ public class Viewer {
 		camera.update();
 	}
 
+	public void resize(int width, int height) {
+		
+		camera.setToOrtho(false, width, height);
+		camera.update();
+		mapRenderer.setView(camera);
+	}
+	
 	public void renderView(Model m)
 	{
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		// map renderer
-		mapRenderer.setView(camera);
 		mapRenderer.render();
 		
 		batch.setProjectionMatrix(camera.combined);

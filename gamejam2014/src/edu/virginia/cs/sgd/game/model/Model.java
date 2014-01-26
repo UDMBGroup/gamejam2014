@@ -42,7 +42,7 @@ public class Model {
 		evidenceList = new ArrayList<Evidence>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
 
-		this.readInFile();
+//		this.readInFile();
 		
 		characters = new HashMap<String, Character>();
 		Character programmer = new Character("John Nicholson", "0", new Point(0, 0), this.evidenceList, this.initialIsShown);
