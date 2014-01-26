@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.files.FileHandle;
 
 import edu.virginia.cs.sgd.input.Input;
+import edu.virginia.cs.sgd.menu.SplashScreen;
 import edu.virginia.cs.sgd.screen.AbstractScreen;
 import edu.virginia.cs.sgd.screen.GameScreen;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
@@ -29,7 +30,7 @@ public class Program extends Game implements ApplicationListener {
 		
 		loadImmediateAssets();
 		loadAssets();
-		createScreen(GameScreen.class);
+		createScreen(SplashScreen.class);
 //		createScreen(MapScreen.class);
 	}
 	
