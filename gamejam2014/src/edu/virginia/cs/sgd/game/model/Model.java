@@ -220,7 +220,7 @@ public class Model {
 					
 					if (ev.getName().equals("manuscript")) {
 						if (chara.getName().equals("Scarlet Velvet")
-								&& characters.get("John Nicholson").getIsCollected(evidence.get("computer"))) {
+								&& characters.get("programmer").getIsCollected(evidence.get("computer"))) {
 							chara.setShown(this.evidence.get("computer"));
 						}
 					}
