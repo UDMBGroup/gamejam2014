@@ -161,4 +161,8 @@ public class Model {
 		
 		return res;
 	}
+	
+	public Point getPosOfCharacter(String character) {
+		return characters.get(character).getPos();
+	}
 }

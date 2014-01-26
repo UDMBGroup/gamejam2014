@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import edu.virginia.cs.sgd.game.controller.Controller;
 import edu.virginia.cs.sgd.game.model.Model;
+import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.viewer.Viewer;
 
 public class Level {
@@ -31,6 +32,11 @@ public class Level {
 	
 	public void render() {
 		
+		
+		String character = c.getActiveCharacter();
+		Point pos = m.getPosOfCharacter(character);
+		
+		v.updateCamera(pos);
 		v.renderView(m);
 		
 	}

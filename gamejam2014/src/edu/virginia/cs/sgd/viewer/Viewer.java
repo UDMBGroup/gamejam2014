@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 
@@ -18,36 +18,50 @@ public class Viewer {
 
 	private Point currentCenter;
 	private OrthographicCamera camera;
-	private SpriteBatch batch;
+	private Batch batch;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	
 	public Viewer(OrthogonalTiledMapRenderer mapRenderer)
 	{
 		camera = new OrthographicCamera();
-		batch = new SpriteBatch();
+		batch = mapRenderer.getSpriteBatch();
+//		batch = new SpriteBatch();
 		currentCenter = new Point(0, 0);
-		this.mapRenderer = mapRenderer;		
+		this.mapRenderer = mapRenderer;	
+		
+		updateCamera();
+		camera.update();
 	}
 	
 	public void dispose()
 	{
-		batch.dispose();
+//		batch.dispose();
 		mapRenderer.dispose();
 	}
 	
 	public void updateCamera(Point characterPosition)
 	{
-		this.moveMap(currentCenter.getX() - characterPosition.getX(), currentCenter.getY() - characterPosition.getY());
-		currentCenter = characterPosition;
-		
-		camera.update();
+		this.moveMap((characterPosition.getX() - currentCenter.getX()) * 32, (characterPosition.getY() - currentCenter.getY()) * 32);
+		currentCenter = characterPosition.copy();
+
+		updateCamera();
 	}
 
 	public void resize(int width, int height) {
 		
 		camera.setToOrtho(false, width, height);
+
+
+		camera.translate(-Gdx.graphics.getWidth() / 2 + 16, -Gdx.graphics.getHeight() / 2 + 16);
+		
+		updateCamera();
+	}
+	
+	private void updateCamera() {
+
 		camera.update();
 		mapRenderer.setView(camera);
+		
 	}
 	
 	public void renderView(Model m)
@@ -58,7 +72,7 @@ public class Viewer {
 		// map renderer
 		mapRenderer.render();
 		
-		batch.setProjectionMatrix(camera.combined);
+//		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
 		List<RenderData> listRData = m.getRenderData();
@@ -77,7 +91,8 @@ public class Viewer {
 	}
 	
     public void moveMap(int deltaX, int deltaY) {
-        Vector3 delta = new Vector3(-deltaX * camera.zoom, deltaY * camera.zoom, 0);
+        Vector3 delta = new Vector3(deltaX * camera.zoom, deltaY * camera.zoom, 0);
         camera.translate(delta);
+//        camera.translate(deltaX, deltaY);
     }        	
 }

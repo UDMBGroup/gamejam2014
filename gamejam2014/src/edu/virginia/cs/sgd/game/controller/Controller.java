@@ -37,4 +37,8 @@ public class Controller {
 		}
 	}
 
+	public String getActiveCharacter() {
+		return activePlayer;
+	}
+
 }
