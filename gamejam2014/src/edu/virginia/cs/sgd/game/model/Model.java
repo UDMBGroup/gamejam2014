@@ -28,7 +28,6 @@ public class Model {
 	private Scanner fileIn;
 	private File modelData;
 	private TiledMap map;
-	private Map<String, Evidence> evidenceList;
 	private Map<Evidence, String> initialIsShown;
 
 	private Queue<String> players;
@@ -42,29 +41,31 @@ public class Model {
 		this.map = map;
 		evidence = new HashMap<String, Evidence>();
 		characters = new HashMap<String, Character>();
-
-		evidenceList = new HashMap<String, Evidence>();
 		initialIsShown = new HashMap<Evidence, String>();
 
+		this.readInFile();
+		
 		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
 
 		while(i.hasNext()) {
 			MapObject o = i.next();
-			float x = (Float) o.getProperties().get("x");
-			float y = (Float) o.getProperties().get("y");
+			int x = Integer.parseInt( (String)o.getProperties().get("x"));
+			int y = Integer.parseInt( (String)o.getProperties().get("y"));
 
 			Point p = new Point((int) x, (int) y);
-
+			
 			evidence.get(o.getName()).setPos(p);
-
+			System.out.println(o.getName() + " " + x + " " + y);
 		}
 
-		this.readInFile();
+		Character programmer = new Character("John Nicholson", "0", new Point(1, 1), this.evidence, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", "1", new Point(1, 3), this.evidence, this.initialIsShown);
+		Character writer = new Character("Annie N.", "2", new Point(3, 1), this.evidence, this.initialIsShown);
 
-		Character programmer = new Character("John Nicholson", "0", new Point(1, 1), this.evidenceList, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", "1", new Point(1, 3), this.evidenceList, this.initialIsShown);
-		Character writer = new Character("Annie N.", "2", new Point(3, 1), this.evidenceList, this.initialIsShown);
-
+		programmer.setShown(this.evidence.get("the corpse"));
+		artist.setShown(this.evidence.get("the corpse"));
+		writer.setShown(this.evidence.get("the corpse"));
+		
 		characters.put("programmer", programmer);
 		characters.put("artist", artist);
 		characters.put("writer", writer);
@@ -88,22 +89,14 @@ public class Model {
 			} else if ((count-1) % 5 == 0) {
 				current = fileIn.nextLine();
 				ev = new Evidence(current, new Point(0, 0));
-				evidenceList.put(current, ev);
+				evidence.put(current, ev);
 			} else {
-				evidenceList.get(current).addToMonologues(fileIn.nextLine());
+				evidence.get(current).addToMonologues(fileIn.nextLine());
 			}
 			count++;
 		}
 
 		fileIn.close();
-	}
-
-	public static void main(String[] args) {
-//				Model test = new Model(null);
-//				for (String key: test.evidenceList.keySet()) {
-//					System.out.println(test.evidenceList.get(key).getMonologues());
-//				}
-//				System.out.println(test.initialIsShown);
 	}
 
 	public int getMapWidth() {
@@ -118,8 +111,8 @@ public class Model {
 		return mapHeight;
 	}
 
-	public String getMonologue(String evidence, String character) {
-		return evidenceList.get(evidence).getCharMonologue(character);
+	public String getMonologue(String evidence_arg, String character) {
+		return this.evidence.get(evidence_arg).getCharMonologue(character);
 	}
 	public void move(String character, Direction dir) {
 
@@ -179,8 +172,84 @@ public class Model {
 		{
 			if (ev.getPos().equals(p1))
 			{
-				System.out.println(ev.getName());
-				// conjure up appropriate monologue
+				//System.out.println(ev.getName());
+				Character chara = characters.get(character);
+				if (!chara.getIsShown(ev)) {
+					this.setMessageOnScreen("Hmmmm");
+				}
+				else {
+					String mono = ev.getCharMonologue(chara.getCharAssignment());
+					chara.setCollected(ev);
+					this.setMessageOnScreen(mono);
+				}
+			}
+		}
+	}
+	
+	public void updateShownBasedOnCollected() {
+		for (Character chara : characters.values()) {
+			for (Evidence ev : evidence.values()) {
+				if (chara.getIsCollected(ev)) {
+					if (ev.getName().equals("the corpse")) {
+						if (chara.getName().equals("John Nicholson")) {
+							chara.setShown(this.evidence.get("poison book"));
+							chara.setShown(this.evidence.get("computer"));
+							break;
+						} else if (chara.getName().equals("Annie N.")) {
+							chara.setShown(this.evidence.get("portrait"));
+							chara.setShown(this.evidence.get("paper scrap"));
+							break;
+						} else if (chara.getName().equals("Scarlet Velvet")) {
+							chara.setShown(this.evidence.get("snacks"));
+							chara.setShown(this.evidence.get("manuscript"));
+							break;
+						}
+					}
+					
+					if (ev.getName().equals("snacks")) {
+						if (chara.getName().equals("Scarlet Velvet")) {
+							chara.setShown(this.evidence.get("cable"));
+							break;
+						}
+					}
+					
+					if (ev.getName().equals("poison book")) {
+						if (chara.getName().equals("John Nicholson")) {
+							chara.setShown(this.evidence.get("scotch glass"));
+							break;
+						}
+					}
+					
+					if (ev.getName().equals("computer")) {
+						if (chara.getName().equals("John Nicholson")) {
+							chara.setShown(this.evidence.get("the purse"));
+							break;
+						}
+					}
+					
+					if (ev.getName().equals("manuscript")) {
+						if (chara.getName().equals("Scarlet Velvet")
+								&& characters.get("John Nicholson").getIsCollected(evidence.get("computer"))) {
+							chara.setShown(this.evidence.get("computer"));
+							break;
+						}
+					}
+					
+					if (ev.getName().equals("computer")) {
+						if (chara.getName().equals("Scarlet Velvet")) {
+							chara.setShown(this.evidence.get("missing weapon"));
+							break;
+						}
+					}
+					
+					if (ev.getName().equals("missing weapon")) {
+						if (chara.getName().equals("Scarlet Velvet")) {
+							chara.setShown(this.evidence.get("the purse"));
+							break;
+						}
+					}
+					
+				}
 			}
 		}
 	}
@@ -202,6 +271,16 @@ public class Model {
 	
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
+	}
+	
+	public Character getCurrentPlayer() {
+		return characters.get(players.peek());
+	}
+	public String getCurrentPlayerName() {
+		return players.peek();
+	}
+	public Evidence getEvidenceFromName(String name) {
+		return evidence.get(name);
 	}
 	
 	public String getNextPlayer() {

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 
+import edu.virginia.cs.sgd.game.model.Character;
 import edu.virginia.cs.sgd.game.model.Evidence;
 import edu.virginia.cs.sgd.game.model.Model;
 import edu.virginia.cs.sgd.util.Point;
@@ -23,6 +24,7 @@ public class Viewer {
 	private Batch batch;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	private BitmapFont font;
+	private Texture textBoxTexture;
 	
 	public Viewer(OrthogonalTiledMapRenderer mapRenderer)
 	{
@@ -31,6 +33,7 @@ public class Viewer {
 		currentCenter = new Point(0, 0);
 		this.mapRenderer = mapRenderer;	
 		font = new BitmapFont();	//uses arial 15 by default
+		textBoxTexture = SingletonAssetManager.getInstance().get("Textbox");
 		
 		updateCamera();
 		camera.update();
@@ -83,13 +86,34 @@ public class Viewer {
 			Texture tex = SingletonAssetManager.getInstance().get(rData.getName());
 			Point p0 = rData.getPos();
 			
-			//batch.draw(tex, p0.getX(), p0.getY(), tex.getWidth(), tex.getHeight(), 0, 0, tex.getWidth(), tex.getHeight(), false, false);
 			if (rData instanceof Evidence) {
-				// programmer - 0
-				// artist - 0
-				// writer - 0
-				// black and white - 0	
 				
+				if (!(rData.getName().equals("John Nicholson")
+						|| rData.getName().equals("Annie N.")
+						|| rData.getName().equals("Scarlet Velvet")))
+				{
+					// programmer - 2
+					// artist - 0
+					// writer - 1
+					int texWidth = tex.getWidth() / 3;
+					int texIndex = -1;
+					Character chara = m.getCurrentPlayer();
+					//System.out.println(rData.getName());
+					if (chara.getIsShown((Evidence)rData)) {
+						if (chara.getName().equals("John Nicholson")) {
+							texIndex = 2;
+						} else if (chara.getName().equals("Annie N.")) {
+							texIndex = 1;
+						} else {
+							texIndex = 0;
+						}
+					}
+					
+					if (texIndex != -1) {
+						//System.out.println("texIndex = " + texIndex);
+						batch.draw(tex, p0.getX() * 32, p0.getY() * 32, texWidth, tex.getHeight(), texIndex * texWidth, 0, texWidth, tex.getHeight(), false, false);
+					}
+				}
 			}
 			else {
 				batch.draw(tex, p0.getX() * 32, p0.getY() * 32);
@@ -98,7 +122,10 @@ public class Viewer {
 		String messageOnScreen = m.getMessageOnScreen();
 		if (!messageOnScreen.isEmpty())
 		{
-			font.draw(batch, "Testing string...", currentCenter.getX() * 32 - 175, currentCenter.getY() * 32 - 75);
+			batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225, currentCenter.getY() * 32 - 145);
+			
+			font.draw(batch, messageOnScreen, currentCenter.getX() * 32 - 200, currentCenter.getY() * 32 - 75);
+
 		}
 		batch.end();		
 	}

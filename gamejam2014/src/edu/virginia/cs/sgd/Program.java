@@ -82,14 +82,33 @@ public class Program extends Game implements ApplicationListener {
 	private void loadImmediateAssets() {
 
 		SingletonAssetManager m = SingletonAssetManager.getInstance();
-		m.load("LibGDX", "data/libgdx.png", Texture.class);
-		m.load("sample", "data/samplesprite.png", Texture.class);
+	//	m.load("LibGDX", "data/libgdx.png", Texture.class);
+	//	m.load("sample", "data/samplesprite.png", Texture.class);
+
+		m.load("poison book", "data/books.png", Texture.class);
+		m.load("cable", "data/cables.png", Texture.class);		
+		m.load("snacks", "data/chips.png", Texture.class);
+		m.load("computer", "data/comps.png", Texture.class);
+		m.load("scotch glass", "data/glasses.png", Texture.class);
+		m.load("manuscript", "data/manuscripts.png", Texture.class);
+		m.load("missing weapon", "data/missingweapons.png", Texture.class);
+		m.load("portrait", "data/portraits.png", Texture.class);
+		m.load("the purse", "data/purses.png", Texture.class);
+		m.load("paper scrap", "data/scraps.png", Texture.class);
+		m.load("poison book", "data/books.png", Texture.class);
+		m.load("the corpse", "data/deadbodies.png", Texture.class);
+
 		m.load("BGMusic", "data/theSituationMainTheme2.wav", Music.class);
+		
 		m.load("John Nicholson", "data/prog.png", Texture.class);
 		m.load("Scarlet Velvet", "data/art.png", Texture.class);
 		m.load("Annie N.", "data/write.png", Texture.class);
-		m.load("testmap", "data/test.tmx", TiledMap.class);
-		m.load("map", "data/sitmapprelim.tmx", TiledMap.class);
+		
+		m.load("Textbox", "data/textbox.png", Texture.class);
+		
+		//m.load("testmap", "data/test.tmx", TiledMap.class);
+		m.load("map", "data/sitmapver3.tmx", TiledMap.class);
+		
 		m.loadModelData("data/ModelData.txt");
 		m.finishLoading();
 		
