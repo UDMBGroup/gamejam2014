@@ -1,14 +1,61 @@
+the corpse
+-
+-
+-
+0,1
 scotch glass
-hmmm yep
-uhmmm
-Eureka!
+-
+-
+-
+
+poison book
+-
+-
+-
+
+snacks
+-
+-
+-
+
+portrait
+-
+-
+-
+
+the purse
+-
+-
+-
 
 computer
-a
-b
-c
+-
+-
+-
 
-dead guy
-weee
-wtf?
-hi ;)
+paper scrap
+-
+-
+-
+
+missing weapon
+-
+-
+-
+
+John
+-
+-
+-
+0,1,2
+Scarlet
+-
+-
+-
+0,1,2
+Annie
+-
+-
+-
+0,1,2
+
