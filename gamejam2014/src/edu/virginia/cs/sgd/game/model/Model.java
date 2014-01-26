@@ -27,17 +27,12 @@ public class Model {
 	private ArrayList<String> initialIsShown;
 	private Map<String, ArrayList<String>> evidenceTable;
 
+	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
 	
 	public Model(TiledMap map) {
 		this.map = map;
-		
-		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
-		while(i.hasNext()) {
-			MapObject o = i.next();
-			
-			System.out.println(o.getName());
-		}
+		evidence = new HashMap<String, Evidence>();
 		
 		evidenceList = new ArrayList<Evidence>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
@@ -45,6 +40,19 @@ public class Model {
 		
 
 //		this.readInFile();
+
+		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
+		
+		while(i.hasNext()) {
+			MapObject o = i.next();
+			float x = (Float) o.getProperties().get("x");
+			float y = (Float) o.getProperties().get("y");
+			
+			Point p = new Point((int) x, (int) y);
+			
+			
+			 
+		}
 		
 		characters = new HashMap<String, Character>();
 		Character programmer = new Character("John Nicholson", "0", new Point(0, 0), this.evidenceList, this.initialIsShown);

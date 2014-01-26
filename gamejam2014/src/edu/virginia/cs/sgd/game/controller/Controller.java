@@ -13,6 +13,7 @@ public class Controller {
 	public Controller() {
 		activePlayer = "programmer";
 	}
+	
 	public void onKeyPress(Model m, int keyCode) {
 		Gdx.app.log(this.getClass().getName(), "Key: " + Input.Keys.toString(keyCode));
 		
