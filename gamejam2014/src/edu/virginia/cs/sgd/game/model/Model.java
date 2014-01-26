@@ -23,17 +23,16 @@ public class Model {
 	private TiledMap map;
 	private Map<String, Evidence> evidenceList;
 	private ArrayList<String> initialIsShown;
-	private Map<String, ArrayList<String>> evidenceTable;
 
 	public Model(TiledMap map) {
 		this.map = map;
 		
-//		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
-//		while(i.hasNext()) {
-//			MapObject o = i.next();
-//			
-//			System.out.println(o.getName());
-//		}
+		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
+		while(i.hasNext()) {
+			MapObject o = i.next();
+			
+			System.out.println(o.getName());
+		}
 		
 		evidenceList = new HashMap<String, Evidence>();
 		initialIsShown = new ArrayList<String>();
@@ -73,11 +72,11 @@ public class Model {
 	}
 
 	public static void main(String[] args) {
-		Model test = new Model(null);
-		for (String key: test.evidenceList.keySet()) {
-			System.out.println(test.evidenceList.get(key).getMonologues());
-		}
-		System.out.println(test.initialIsShown);
+//		Model test = new Model(null);
+//		for (String key: test.evidenceList.keySet()) {
+//			System.out.println(test.evidenceList.get(key).getMonologues());
+//		}
+//		System.out.println(test.initialIsShown);
 	}
 
 	public int getMapWidth() {
@@ -93,7 +92,7 @@ public class Model {
 	}
 
 	public String getMonologue(String evidence, String character) {
-		return evidenceTable.get(evidence).get(Integer.parseInt(character));
+		return evidenceList.get(evidence).getCharMonologue(character);
 	}
 	
 	public void move(String character, Direction dir) {
