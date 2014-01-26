@@ -82,9 +82,9 @@ public class Program extends Game implements ApplicationListener {
 		m.load("LibGDX", "data/libgdx.png", Texture.class);
 		m.load("sample", "data/samplesprite.png", Texture.class);
 		m.load("BGMusic", "data/theSituationMainTheme2.wav", Music.class);
-		m.load("John Nicholson", "data/samplesprite.png", Texture.class);
-		m.load("Scarlet Velvet", "data/samplesprite.png", Texture.class);
-		m.load("Annie N.", "data/samplesprite.png", Texture.class);
+		m.load("John Nicholson", "data/prog.png", Texture.class);
+		m.load("Scarlet Velvet", "data/art.png", Texture.class);
+		m.load("Annie N.", "data/write.png", Texture.class);
 		m.load("testmap", "data/test.tmx", TiledMap.class);
 		m.load("map", "data/sitmapprelim.tmx", TiledMap.class);
 		m.finishLoading();

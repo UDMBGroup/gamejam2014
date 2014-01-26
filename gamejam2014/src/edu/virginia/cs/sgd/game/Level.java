@@ -15,7 +15,7 @@ public class Level {
 	
 	public Level(TiledMap map, Viewer viewer) {
 		m = new Model(map);
-		c = new Controller();
+		c = new Controller(m.getNextPlayer());
 		v = viewer;
 	}
 

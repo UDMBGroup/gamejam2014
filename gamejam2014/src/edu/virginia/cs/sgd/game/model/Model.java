@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 
 import com.badlogic.gdx.maps.MapObject;
@@ -26,6 +28,8 @@ public class Model {
 	private Map<String, Evidence> evidenceList;
 	private ArrayList<String> initialIsShown;
 
+	private Queue<String> players;
+	
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
 
@@ -59,6 +63,11 @@ public class Model {
 		characters.put("programmer", programmer);
 		characters.put("artist", artist);
 		characters.put("writer", writer);
+		
+		players = new LinkedList<String>();
+		players.add("writer");
+		players.add("programmer");
+		players.add("artist");
 	}
 
 	public void readInFile() {
@@ -158,5 +167,11 @@ public class Model {
 	}
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
+	}
+	
+	public String getNextPlayer() {
+		String top = players.poll();
+		players.add(top);
+		return players.peek();
 	}
 }

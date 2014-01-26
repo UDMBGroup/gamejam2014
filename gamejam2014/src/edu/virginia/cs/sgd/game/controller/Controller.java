@@ -10,8 +10,8 @@ public class Controller {
 	
 	public String activePlayer;
 	
-	public Controller() {
-		activePlayer = "programmer";
+	public Controller(String startPlayer) {
+		activePlayer = startPlayer;
 	}
 	
 	public void onKeyPress(Model m, int keyCode) {
@@ -33,6 +33,9 @@ public class Controller {
 		case Input.Keys.D:
 		case Input.Keys.RIGHT:
 			m.move(activePlayer, Direction.EAST);
+			break;
+		case Input.Keys.ENTER:
+			activePlayer = m.getNextPlayer();
 			break;
 		}
 	}
