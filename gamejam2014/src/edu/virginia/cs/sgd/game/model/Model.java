@@ -12,8 +12,6 @@ import java.util.Scanner;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
 import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.viewer.RenderData;
@@ -23,37 +21,30 @@ public class Model {
 	private Scanner fileIn;
 	private File modelData;
 	private TiledMap map;
-	private ArrayList<Evidence> evidenceList;
+	private Map<String, Evidence> evidenceList;
 	private ArrayList<String> initialIsShown;
 	private Map<String, ArrayList<String>> evidenceTable;
 
-	private Map<String, Character> characters;
-	
 	public Model(TiledMap map) {
 		this.map = map;
 		
-		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
-		while(i.hasNext()) {
-			MapObject o = i.next();
-			
-			System.out.println(o.getName());
-		}
+//		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
+//		while(i.hasNext()) {
+//			MapObject o = i.next();
+//			
+//			System.out.println(o.getName());
+//		}
 		
-		evidenceList = new ArrayList<Evidence>();
-		evidenceTable = new HashMap<String, ArrayList<String>>();
+		evidenceList = new HashMap<String, Evidence>();
 		initialIsShown = new ArrayList<String>();
 		
 
-//		this.readInFile();
+		this.readInFile();
 		
-		characters = new HashMap<String, Character>();
 		Character programmer = new Character("John Nicholson", "0", new Point(0, 0), this.evidenceList, this.initialIsShown);
 		Character artist = new Character("Scarlet Velvet", "1", new Point(0, 0), this.evidenceList, this.initialIsShown);
 		Character writer = new Character("Annie N.", "2", new Point(0, 0), this.evidenceList, this.initialIsShown);
 
-		characters.put("programmer", programmer);
-		characters.put("artist", artist);
-		characters.put("writer", writer);
 	}
 	
 	public void readInFile() {
@@ -64,19 +55,16 @@ public class Model {
 			e.printStackTrace();
 		}
 		int count = 1;
-		ArrayList<String> temp = new ArrayList<String>();
+		String current = "";
 
 		while (fileIn.hasNextLine()) {
 			if (count % 5 == 0 && count > 0) {
 				initialIsShown.add(fileIn.nextLine());
 			} else if ((count-1) % 5 == 0) {
-				evidenceList.add(new Evidence(fileIn.nextLine(), new Point(0,0)));
+				current = fileIn.nextLine();
+				evidenceList.put(current, new Evidence(current, new Point(0,0)));
 			} else {
-				temp.add(fileIn.nextLine());
-			}
-			if (temp.size() == 3) {
-				evidenceTable.put(evidenceList.get(((count-1)/5)).getName(), temp);
-				temp = new ArrayList<String>();
+				evidenceList.get(current).addToMonologues(fileIn.nextLine());
 			}
 			count++;
 		}
@@ -85,9 +73,11 @@ public class Model {
 	}
 
 	public static void main(String[] args) {
-//		Model test = new Model(null);
-//		System.out.println(test.evidenceTable);
-//		System.out.println(test.initialIsShown);
+		Model test = new Model(null);
+		for (String key: test.evidenceList.keySet()) {
+			System.out.println(test.evidenceList.get(key).getMonologues());
+		}
+		System.out.println(test.initialIsShown);
 	}
 
 	public int getMapWidth() {
@@ -108,31 +98,8 @@ public class Model {
 	
 	public void move(String character, Direction dir) {
 
-		Point p = characters.get(character).getPos();
-		int newX = p.getX();
-		int newY = p.getY();
-		
-		switch(dir) {
-		case NORTH:
-			newY++;
-			break;
-		case SOUTH:
-			newY--;
-			break;
-		case EAST:
-			newX++;
-			break;
-		case WEST:
-			newX--;
-			break;
-		}
-		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
-				.getCell(newX, newY);
-		
-		if(c == null) {
-			p.setX(newX);
-			p.setY(newY);
-		}
+//		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
+//				.getCell(newX, newY);
 	}
 	
 	public void interact(String character, Direction dir) {
@@ -140,17 +107,6 @@ public class Model {
 	}
 	
 	public List<RenderData> getRenderData() {
-		
-		List<RenderData> res =  new ArrayList<RenderData>();
-		
-		for(Evidence e : evidenceList) {
-			res.add(e);
-		}
-		
-		for(Character c : characters.values()) {
-			res.add(c);
-		}
-		
-		return res;
+		return new ArrayList<RenderData>();
 	}
 }
