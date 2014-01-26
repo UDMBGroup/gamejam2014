@@ -37,6 +37,9 @@ public class Controller {
 		case Input.Keys.ENTER:
 			activePlayer = m.getNextPlayer();
 			break;
+		case Input.Keys.Z:
+			m.interact(activePlayer, Direction.NORTH);
+			break;
 		}
 	}
 

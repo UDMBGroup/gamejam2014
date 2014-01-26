@@ -141,6 +141,14 @@ public class Model {
 		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
 				.getCell(newX, newY);
 
+		for (String otherCharName : characters.keySet())
+		{
+			if (otherCharName.equals(character)) continue;
+			Point p1 = characters.get(otherCharName).getPos();
+			if (p1.getX() == newX && p1.getY() == newY)
+				return;
+		}
+		
 		if(c == null) {
 			p.setX(newX);
 			p.setY(newY);
@@ -148,7 +156,30 @@ public class Model {
 	}
 
 	public void interact(String character, Direction dir) {
-
+		Point p = characters.get(character).getPos();
+		Point p1 = new Point(p.getX(), p.getY());
+		switch (dir) {
+		case NORTH:
+			p1.setY(p1.getY() + 1);
+			break;
+		case SOUTH:
+			p1.setY(p1.getY() - 1);
+			break;
+		case EAST:
+			p1.setX(p1.getX() + 1);
+			break;
+		case WEST:
+			p1.setX(p1.getX() - 1);
+			break;
+		}
+		for (Evidence ev : evidence.values())
+		{
+			if (ev.getPos().equals(p1))
+			{
+				System.out.println(ev.getName());
+				// conjure up appropriate monologue
+			}
+		}
 	}
 
 	public List<RenderData> getRenderData() {
@@ -165,6 +196,7 @@ public class Model {
 
 		return res;
 	}
+	
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
 	}
