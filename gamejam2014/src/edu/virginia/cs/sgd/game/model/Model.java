@@ -35,7 +35,7 @@ public class Model {
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
 	
-	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we we're arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
+	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
 
 	public Model(TiledMap map) {
 		this.map = map;
