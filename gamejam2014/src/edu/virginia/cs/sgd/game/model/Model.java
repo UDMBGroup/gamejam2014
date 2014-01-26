@@ -23,7 +23,6 @@ public class Model {
 	private TiledMap map;
 	private Map<String, Evidence> evidenceList;
 	private ArrayList<String> initialIsShown;
-	private Map<String, ArrayList<String>> evidenceTable;
 
 	public Model(TiledMap map) {
 		this.map = map;
@@ -93,7 +92,7 @@ public class Model {
 	}
 
 	public String getMonologue(String evidence, String character) {
-		return evidenceTable.get(evidence).get(Integer.parseInt(character));
+		return evidenceList.get(evidence).getCharMonologue(character);
 	}
 	
 	public void move(String character, Direction dir) {
