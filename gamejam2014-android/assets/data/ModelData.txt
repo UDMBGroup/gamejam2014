@@ -4,67 +4,67 @@ the corpse
 -Poor Mr.Bigglesworth. He was such a dear friend and was like a father to me. Why would someone slip poison into his mouth for? What was the purpose?
 0,1,2
 scotch glass
--It's a half empty glass of scotch, Mr.Bigglesworth favorite drink. Upon further inspection, it smells like poison. Better not drink that!
+-It's a half empty glass of scotch, Mr.Bigglesworth favorite drink. Maybe he was poisoned?. Better not drink that!
 -
 -
 
 poison book
--It's a book about poison, written by Douglas Applesteen. One of the pages is dog-eared, and it looks like there is a little bit of nail polish in the book.
+-It's a book about poison, written by Douglas Applesteen. One of the pages is dog-eared. Hmmm... the smell reminds me of Scarlet's perfume...
 -
 -
 
 snacks
 -
--This detective work is making me hungry! Alright lets see here, there's pretzels, pepsi, chinese food, and an opened bag of cheetos that John brought. Oh goodness I think I'll take the chinese food!
+-This detective work is making me hungry! Alright lets see here, there's pretzels, pepsi, and an opened bag of cheetos that John brought. He's the only one that likes them...
 -
 
 portrait
 -
 -
--This portrait looks vaguefully familiar...Oh my god he looks just like Mr.Bigglesworth! Holy crap he must be Mr.Bigglesworth father, and he looks loaded! Come to think of it, now that Mr.Bigglesworth is dead, who is going to inherit the mansion? Scarlett Velvet was getting pretty cosy with Mr.Bigglesworth. OMG Scarlett killed Mr.Bigglesworth so she could inherit the mansion! That jerk!
+-It's a portrait of Mr. Bigglesworth... It's signed S.V... Scarlet Velvet, perhaps? I knew they had something going on behind the scenes! I bet she killed him for his money!
 
 cable
 -
--
+-This cable looks a little dishevelled... I wonder if he was strangled?! Those cheeto stains near his collar... hmmm...
 -
 
 the purse
--
--
+-It's Annie's purse. Why do women always needs such large purses? and why is it next to the door? I'm sure she was carrying it earlier...
+-Hmmm... Let's see what Mrs. N. keeps in here anyway. OMG, is this a mace?! She took it from the suit of armor! Is this the murder weapon?!
 -
 
 computer
--
--
+- Let's just go ahead and take a look at his email... maybe there'll be a clue. *hacking commences* Ahah! An angry email from Annie! Mad enough to kill?
+-Well, well, an angry email from Annie to Mr. Bigglesworth! Must be about that rejected manuscript...
 -
 
 paper scrap
 -
 -
--
+-No my God! A scrap of paper with a 3 on it... Half-Life 3 confirmed! I bet John killed Mr. B. because he wouldn't let John play!
 
 missing weapon
 -
--
+-There looks like there should be a weapon in this statues hands... A sword, maybe? Where did it go?
 -
 
 manuscript
 -
--
+-A manuscript by Anie N. Looks like Mr. Bigglesworth didn't like her ideas. It's all marked up! I doubt she like that...
 -
 
 John Nicholson
 -
--
--
+-John seems to be in deep thought. Probably thinking about binary numbers and stuff like that...
+-John... He's a genius, but an evil genius? Maybe...
 0,1,2
 Scarlet Velvet
+-Scarlet is so beautiful... oh crap, she's looking at me! Act cool, John! Act coooool...
 -
--
--
+-Scarlet... she's a great artist, but I always thought she seemed kind of full of herself...
 0,1,2
 Annie N.
--
--
+-Annie... she is one of the best game story writers in the biz! I loved her work on Duty Calls: The War Cometh
+-Annie... such a weirdo. She seems nice and all, but something about her creeps me out!
 -
 0,1,2

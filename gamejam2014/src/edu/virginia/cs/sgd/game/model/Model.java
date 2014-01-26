@@ -35,7 +35,7 @@ public class Model {
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
 	
-	private String messageOnScreen = "Testing string...";
+	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we we're arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
 
 	public Model(TiledMap map) {
 		this.map = map;
@@ -58,9 +58,9 @@ public class Model {
 			System.out.println(o.getName() + " " + x + " " + y);
 		}
 
-		Character programmer = new Character("John Nicholson", "0", new Point(1, 1), this.evidence, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", "1", new Point(1, 3), this.evidence, this.initialIsShown);
-		Character writer = new Character("Annie N.", "2", new Point(3, 1), this.evidence, this.initialIsShown);
+		Character programmer = new Character("John Nicholson", "0", new Point(9, 5), this.evidence, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", "1", new Point(9, 7), this.evidence, this.initialIsShown);
+		Character writer = new Character("Annie N.", "2", new Point(10, 6), this.evidence, this.initialIsShown);
 
 		programmer.setShown(this.evidence.get("the corpse"));
 		artist.setShown(this.evidence.get("the corpse"));
@@ -151,38 +151,35 @@ public class Model {
 		}
 	}
 
-	public void interact(String character, Direction dir) {
+	public void interact(String character) {
 		Point p = characters.get(character).getPos();
-		Point p1 = new Point(p.getX(), p.getY());
-		switch (dir) {
-		case NORTH:
-			p1.setY(p1.getY() + 1);
-			break;
-		case SOUTH:
-			p1.setY(p1.getY() - 1);
-			break;
-		case EAST:
-			p1.setX(p1.getX() + 1);
-			break;
-		case WEST:
-			p1.setX(p1.getX() - 1);
-			break;
-		}
-		for (Evidence ev : evidence.values())
-		{
-			if (ev.getPos().equals(p1))
+		int[] dx = { 0, 1, 0, -1};
+		int[] dy = { -1, 0, 1, 0};
+		for (int i = 0; i < 4; i++) {
+			
+			boolean found = false;
+			Point p1 = new Point(p.getX() + dx[i], p.getY() + dy[i]);
+			for (Evidence ev : evidence.values())
 			{
-				//System.out.println(ev.getName());
-				Character chara = characters.get(character);
-				if (!chara.getIsShown(ev)) {
-					this.setMessageOnScreen("Hmmmm");
-				}
-				else {
-					String mono = ev.getCharMonologue(chara.getCharAssignment());
-					chara.setCollected(ev);
-					this.setMessageOnScreen(mono);
+				if (ev.getPos().equals(p1))
+				{
+					//System.out.println(ev.getName());
+					Character chara = characters.get(character);
+					if (!chara.getIsShown(ev)) {
+						this.setMessageOnScreen("Hmmmm");
+						found = true; break;
+					}
+					else {
+						String mono = ev.getCharMonologue(chara.getCharAssignment());
+						chara.setCollected(ev);
+						this.setMessageOnScreen(mono);
+						this.updateShownBasedOnCollected();
+						found = true; break;
+					}
 				}
 			}
+			if (found)
+				break;
 		}
 	}
 	

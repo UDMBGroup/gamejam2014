@@ -120,13 +120,27 @@ public class Viewer {
 			}
 		}
 		String messageOnScreen = m.getMessageOnScreen();
-		if (!messageOnScreen.isEmpty())
-		{
+//		if (!messageOnScreen.isEmpty())
+//		{
 			batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225, currentCenter.getY() * 32 - 145);
-			
-			font.draw(batch, messageOnScreen, currentCenter.getX() * 32 - 200, currentCenter.getY() * 32 - 75);
-
-		}
+			String[] allWords = messageOnScreen.split(" ");
+			int numChars = 0;
+			int lineNum = 0;
+			String messageLine = "";
+			for (String word : allWords) {
+				
+				messageLine += word + " ";
+				numChars += word.length() + 1;
+				if (numChars >= 60) {
+					font.draw(batch, messageLine, currentCenter.getX() * 32 - 200, currentCenter.getY() * 32 - 60 - (lineNum * 20));
+					lineNum++;
+					messageLine = "";
+					numChars = 0;
+				}
+				
+			}
+			font.draw(batch, messageLine, currentCenter.getX() * 32 - 200, currentCenter.getY() * 32 - 60 - ((lineNum) * 20));
+//		}
 		batch.end();		
 	}
 	

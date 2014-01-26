@@ -50,8 +50,6 @@ public class Character extends RenderData {
 	public void setShown(Evidence evidence) {
 		if (isShown.get(evidence) == 0) {
 			isShown.put(evidence, 1);
-		} else {
-			isShown.put(evidence, 0);
 		}
 	}
 
