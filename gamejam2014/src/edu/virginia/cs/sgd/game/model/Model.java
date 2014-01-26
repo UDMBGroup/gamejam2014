@@ -41,6 +41,8 @@ public class Model {
 		
 		evidenceList = new ArrayList<Evidence>();
 		evidenceTable = new HashMap<String, ArrayList<String>>();
+		initialIsShown = new ArrayList<String>();
+		
 
 //		this.readInFile();
 		
@@ -85,6 +87,7 @@ public class Model {
 	public static void main(String[] args) {
 //		Model test = new Model(null);
 //		System.out.println(test.evidenceTable);
+//		System.out.println(test.initialIsShown);
 	}
 
 	public int getMapWidth() {
