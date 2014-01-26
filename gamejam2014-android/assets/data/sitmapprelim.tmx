@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="15" height="12" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="sitprelim" tilewidth="32" tileheight="32">
+  <image source="tilesetprelim.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="sitprelim" tilewidth="32" tileheight="32">
+  <image source="tilesetprelim.png" width="256" height="256"/>
+ </tileset>
+ <layer name="BG" width="15" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyd0DkPAVEUhuHB2JfKVthaS2P5A5gGha1CQWFrLA2CP++d5EpuTmZkoniSe86X7xYnbBjG8Q8R5FBFDXU0kEIaGWTVLOVRRhMttNGBiQKKKKnZ5oMfAVRU1xQs4buPIoa46CZEf4oZ5g5/m6IbREjLFlhi5aGbFNkAQ4w8dC2R7bDHweUObreynXDG5Ud3rd5bkd1wx0PbddFDHxut64V+A7s7xtXBEy+8XfIJPqagIoU=
+  </data>
+ </layer>
+ <layer name="Collision" width="15" height="12" opacity="0.01">
+  <data encoding="base64" compression="zlib">
+   eJyrYWBgqBkkmAELH10MXY4QIFYvsfKDSS8hQC29xJhB7TgiFwMAnckskQ==
+  </data>
+ </layer>
+ <objectgroup name="Evidence" width="15" height="12"/>
+</map>

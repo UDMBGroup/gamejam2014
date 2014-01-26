@@ -12,6 +12,8 @@ import java.util.Scanner;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
 import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.viewer.RenderData;
@@ -26,38 +28,39 @@ public class Model {
 
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
-	
+
 	public Model(TiledMap map) {
 		this.map = map;
 		evidence = new HashMap<String, Evidence>();
-		
+		characters = new HashMap<String, Character>();
+
 		evidenceList = new HashMap<String, Evidence>();
 		initialIsShown = new ArrayList<String>();
-		
+
 		Iterator<MapObject> i = map.getLayers().get("Evidence").getObjects().iterator();
-		
+
 		while(i.hasNext()) {
 			MapObject o = i.next();
 			float x = (Float) o.getProperties().get("x");
 			float y = (Float) o.getProperties().get("y");
-			
+
 			Point p = new Point((int) x, (int) y);
-			
+
 			evidence.get(o.getName()).setPos(p);
-			 
+
 		}
 
-		this.readInFile();
-		
-		Character programmer = new Character("John Nicholson", "0", new Point(0, 0), this.evidenceList, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", "1", new Point(0, 0), this.evidenceList, this.initialIsShown);
-		Character writer = new Character("Annie N.", "2", new Point(0, 0), this.evidenceList, this.initialIsShown);
+		//		this.readInFile();
+
+		Character programmer = new Character("John Nicholson", "0", new Point(1, 1), this.evidenceList, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", "1", new Point(1, 3), this.evidenceList, this.initialIsShown);
+		Character writer = new Character("Annie N.", "2", new Point(3, 1), this.evidenceList, this.initialIsShown);
 
 		characters.put("programmer", programmer);
 		characters.put("artist", artist);
 		characters.put("writer", writer);
 	}
-	
+
 	public void readInFile() {
 		try {
 			modelData = new File("ModelData.txt");
@@ -79,16 +82,16 @@ public class Model {
 			}
 			count++;
 		}
-		
+
 		fileIn.close();
 	}
 
 	public static void main(String[] args) {
-//		Model test = new Model(null);
-//		for (String key: test.evidenceList.keySet()) {
-//			System.out.println(test.evidenceList.get(key).getMonologues());
-//		}
-//		System.out.println(test.initialIsShown);
+		//		Model test = new Model(null);
+		//		for (String key: test.evidenceList.keySet()) {
+		//			System.out.println(test.evidenceList.get(key).getMonologues());
+		//		}
+		//		System.out.println(test.initialIsShown);
 	}
 
 	public int getMapWidth() {
@@ -106,21 +109,53 @@ public class Model {
 	public String getMonologue(String evidence, String character) {
 		return evidenceList.get(evidence).getCharMonologue(character);
 	}
-	
 	public void move(String character, Direction dir) {
 
-//		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
-//				.getCell(newX, newY);
+		Point p = characters.get(character).getPos();
+		int newX = p.getX();
+		int newY = p.getY();
+
+		switch(dir) {
+		case NORTH:
+			newY++;
+			break;
+		case SOUTH:
+			newY--;
+			break;
+		case EAST:
+			newX++;
+			break;
+		case WEST:
+			newX--;
+			break;
+		}
+		Cell c = ((TiledMapTileLayer) map.getLayers().get("Collision"))
+				.getCell(newX, newY);
+
+		if(c == null) {
+			p.setX(newX);
+			p.setY(newY);
+		}
 	}
-	
+
 	public void interact(String character, Direction dir) {
-		
+
 	}
-	
+
 	public List<RenderData> getRenderData() {
-		return new ArrayList<RenderData>();
+
+		List<RenderData> res = new ArrayList<RenderData>();
+
+		for(Evidence e : evidence.values()) {
+			res.add(e);
+		}
+
+		for(Character c : characters.values()) {
+			res.add(c);
+		}
+
+		return res;
 	}
-	
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
 	}

@@ -86,6 +86,7 @@ public class Program extends Game implements ApplicationListener {
 		m.load("Scarlet Velvet", "data/samplesprite.png", Texture.class);
 		m.load("Annie N.", "data/samplesprite.png", Texture.class);
 		m.load("testmap", "data/test.tmx", TiledMap.class);
+		m.load("map", "data/sitmapprelim.tmx", TiledMap.class);
 		m.finishLoading();
 		
 	}

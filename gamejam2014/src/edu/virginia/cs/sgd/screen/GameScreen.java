@@ -22,7 +22,7 @@ public class GameScreen extends AbstractScreen {
 		bgMusic = SingletonAssetManager.getInstance().get("BGMusic");	
 		bgMusic.play();
 		
-		TiledMap map = SingletonAssetManager.getInstance().get("testmap");
+		TiledMap map = SingletonAssetManager.getInstance().get("map");
 
 		OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(map, 1);
 		viewer = new Viewer(renderer);
