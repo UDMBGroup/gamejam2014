@@ -83,4 +83,11 @@ public class Model {
 		return evidenceTable.get(evidence).get(Integer.parseInt(character));
 	}
 	
+	public void move(String character, Direction dir) {
+		
+	}
+	
+	public void interact(String character, Direction dir) {
+		
+	}
 }

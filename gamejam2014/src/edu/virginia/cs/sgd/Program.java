@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import edu.virginia.cs.sgd.input.Input;
 import edu.virginia.cs.sgd.screen.AbstractScreen;
-import edu.virginia.cs.sgd.screen.TestScreen;
+import edu.virginia.cs.sgd.screen.GameScreen;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 
 public class Program extends Game implements ApplicationListener {
@@ -25,7 +25,7 @@ public class Program extends Game implements ApplicationListener {
 		
 		loadImmediateAssets();
 		loadAssets();
-		createScreen(TestScreen.class);
+		createScreen(GameScreen.class);
 //		createScreen(MapScreen.class);
 	}
 	
@@ -79,7 +79,7 @@ public class Program extends Game implements ApplicationListener {
 
 		SingletonAssetManager m = SingletonAssetManager.getInstance();
 		m.load("LibGDX", "data/libgdx.png", Texture.class);
-		//m.load("TestMap", "map_Entrance.tmx", TiledMap.class);
+		m.load("sample", "data/samplesprite.png", Texture.class);
 		m.finishLoading();
 		
 	}
