@@ -69,7 +69,7 @@ public class Viewer {
 			Point p0 = rData.getPos();
 			
 			//batch.draw(tex, p0.getX(), p0.getY(), tex.getWidth(), tex.getHeight(), 0, 0, tex.getWidth(), tex.getHeight(), false, false);
-			batch.draw(tex, p0.getX(), p0.getY());
+			batch.draw(tex, p0.getX() * 32, p0.getY() * 32);
 		}
 
 		

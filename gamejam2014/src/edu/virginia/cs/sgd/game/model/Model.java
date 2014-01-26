@@ -140,6 +140,17 @@ public class Model {
 	}
 	
 	public List<RenderData> getRenderData() {
-		return new ArrayList<RenderData>();
+		
+		List<RenderData> res =  new ArrayList<RenderData>();
+		
+		for(Evidence e : evidenceList) {
+			res.add(e);
+		}
+		
+		for(Character c : characters.values()) {
+			res.add(c);
+		}
+		
+		return res;
 	}
 }
