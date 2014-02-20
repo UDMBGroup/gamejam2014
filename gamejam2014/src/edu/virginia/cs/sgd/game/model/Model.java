@@ -261,7 +261,11 @@ public class Model {
 		List<RenderData> res = new ArrayList<RenderData>();
 
 		for (Evidence e : evidence.values()) {
-			res.add(e);
+			if (e.getName().equals("programmer") || e.getName().equals("artist") || e.getName().equals("writer")) {
+				continue;
+			} else {
+				res.add(e);
+			}
 		}
 
 		for (Character c : characters.values()) {

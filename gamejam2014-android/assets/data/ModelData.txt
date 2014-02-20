@@ -53,17 +53,17 @@ manuscript
 -A manuscript by Annie N. Looks like Mr. Bigglesworth didn't like her ideas. It's all marked up! I doubt she like that...
 -
 
-John Nicholson
+programmer
 -
 -John seems to be in deep thought. Probably thinking about binary numbers and stuff like that...
 -John... He's a genius, but an evil genius? Maybe...
 0,1,2
-Scarlet Velvet
+artist
 -Scarlet is so beautiful... oh crap, she's looking at me! Act cool, John! Act coooool...
 -
 -Scarlet... she's a great artist, but I always thought she seemed kind of full of herself...
 0,1,2
-Annie N.
+writer
 -Annie... she is one of the best game story writers in the biz! I loved her work on Duty Calls: The War Cometh
 -Annie... such a weirdo. She seems nice and all, but something about her creeps me out!
 -
