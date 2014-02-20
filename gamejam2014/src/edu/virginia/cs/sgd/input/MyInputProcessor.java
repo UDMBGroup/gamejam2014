@@ -3,10 +3,10 @@ package edu.virginia.cs.sgd.input;
 import com.badlogic.gdx.InputProcessor;
 
 public class MyInputProcessor implements InputProcessor {
-	
+
 	private Input myInput;
-	
-	public MyInputProcessor(Input a){
+
+	public MyInputProcessor(Input a) {
 		myInput = a;
 	}
 

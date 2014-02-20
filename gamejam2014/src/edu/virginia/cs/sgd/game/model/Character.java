@@ -1,7 +1,5 @@
 package edu.virginia.cs.sgd.game.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,45 +9,44 @@ import edu.virginia.cs.sgd.viewer.RenderData;
 public class Character extends RenderData {
 
 	final private String charAssignment;
-	private Map<Evidence, Integer> isCollected;
-	private Map<Evidence, Integer> isShown;
+	private Map<Evidence, Boolean> isCollected;
+	private Map<Evidence, Boolean> isShown;
 
 	public Character(String name, String charAssignment, Point pos,
-			Map<String, Evidence> evidenceList, Map<Evidence, String> initialIsShown) {
+			Map<String, Evidence> evidenceList,
+			Map<Evidence, String> initialIsShown) {
 		super(name, pos);
 		this.charAssignment = charAssignment;
-		this.isCollected = new HashMap<Evidence, Integer>();
-		this.isShown = new HashMap<Evidence, Integer>();
+		this.isCollected = new HashMap<Evidence, Boolean>();
+		this.isShown = new HashMap<Evidence, Boolean>();
 		for (Evidence key : evidenceList.values()) {
-			isCollected.put(key, 0);
+			isCollected.put(key, false);
 		}
-		int count = 0;
-		for (Evidence key: evidenceList.values()) {
+		for (Evidence key : evidenceList.values()) {
 			String[] temp = initialIsShown.get(key).trim().split(",");
 			for (int j = 0; j < temp.length; j++) {
 				if (temp[j].equals(charAssignment)) {
-					isShown.put(key, 1);
+					isShown.put(key, true);
 				} else {
-					isShown.put(key, 0);
+					isShown.put(key, false);
 				}
 			}
-			count++;
 		}
 	}
 
 	public void setCollected(Evidence evidence) {
-		if (isCollected.get(evidence) == 0) {
-			isCollected.put(evidence, 1);
+		if (!isCollected.get(evidence)) {
+			isCollected.put(evidence, true);
 		}
 	}
 
 	public boolean getIsCollected(Evidence evidence) {
-		return isCollected.get(evidence) == 1;
+		return isCollected.get(evidence);
 	}
-	
+
 	public void setShown(Evidence evidence) {
-		if (isShown.get(evidence) == 0) {
-			isShown.put(evidence, 1);
+		if (!isShown.get(evidence)) {
+			isShown.put(evidence, true);
 		}
 	}
 
@@ -57,10 +54,11 @@ public class Character extends RenderData {
 		if (evidence.getName().equals("John Nicholson")
 				|| evidence.getName().equals("Annie N.")
 				|| evidence.getName().equals("Scarlet Velvet")
-				|| evidence.getName().equals("the corpse"))
+				|| evidence.getName().equals("the corpse")) {
 			return true;
-			
-		return isShown.get(evidence) == 1;
+		}
+
+		return isShown.get(evidence);
 	}
 
 	public String getCharAssignment() {

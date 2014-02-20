@@ -1,39 +1,33 @@
 package edu.virginia.cs.sgd;
 
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.files.FileHandle;
 
 import edu.virginia.cs.sgd.input.Input;
 import edu.virginia.cs.sgd.menu.SplashScreen;
 import edu.virginia.cs.sgd.screen.AbstractScreen;
-import edu.virginia.cs.sgd.screen.GameScreen;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 
 public class Program extends Game implements ApplicationListener {
-	
-	public static final String LOG = Program.class.getName(); //GameOfSwords.class.getSimpleName();
+
+	public static final String LOG = Program.class.getName();
 
 	private Input input;
 	private AbstractScreen screen;
-	
+
 	@Override
 	public void create() {
 		input = new Input();
 		Texture.setEnforcePotImages(false);
-		
+
 		loadImmediateAssets();
 		loadAssets();
 		createScreen(SplashScreen.class);
-//		createScreen(MapScreen.class);
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -42,7 +36,7 @@ public class Program extends Game implements ApplicationListener {
 	@Override
 	public void render() {
 		Class<? extends AbstractScreen> newScreen = screen.checkScreenChange();
-		if(newScreen != null) {
+		if (newScreen != null) {
 			createScreen(newScreen);
 		}
 		super.render();
@@ -63,7 +57,7 @@ public class Program extends Game implements ApplicationListener {
 	public void resume() {
 		super.resume();
 	}
-	
+
 	private void createScreen(Class<? extends AbstractScreen> type) {
 		screen = null;
 		try {
@@ -75,19 +69,19 @@ public class Program extends Game implements ApplicationListener {
 			e.printStackTrace();
 			return;
 		}
-		
+
 		input.setListener(screen);
 		setScreen(screen);
 	}
-	
+
 	private void loadImmediateAssets() {
 
 		SingletonAssetManager m = SingletonAssetManager.getInstance();
-	//	m.load("LibGDX", "data/libgdx.png", Texture.class);
-	//	m.load("sample", "data/samplesprite.png", Texture.class);
+		// m.load("LibGDX", "data/libgdx.png", Texture.class);
+		// m.load("sample", "data/samplesprite.png", Texture.class);
 
 		m.load("poison book", "data/books.png", Texture.class);
-		m.load("cable", "data/cables.png", Texture.class);		
+		m.load("cable", "data/cables.png", Texture.class);
 		m.load("snacks", "data/chips.png", Texture.class);
 		m.load("computer", "data/comps.png", Texture.class);
 		m.load("scotch glass", "data/glasses.png", Texture.class);
@@ -100,24 +94,24 @@ public class Program extends Game implements ApplicationListener {
 		m.load("the corpse", "data/deadbodies.png", Texture.class);
 
 		m.load("BGMusic", "data/theSituationMainTheme2.wav", Music.class);
-		
+
 		m.load("John Nicholson", "data/prog.png", Texture.class);
 		m.load("Scarlet Velvet", "data/art.png", Texture.class);
 		m.load("Annie N.", "data/write.png", Texture.class);
-		
+
 		m.load("Textbox", "data/textbox.png", Texture.class);
 		m.load("SplashScreen", "data/splashscreen.png", Texture.class);
-		
-		//m.load("testmap", "data/test.tmx", TiledMap.class);
+
+		// m.load("testmap", "data/test.tmx", TiledMap.class);
 		m.load("map", "data/sitmapver3.tmx", TiledMap.class);
-		
+
 		m.loadModelData("data/ModelData.txt");
 		m.finishLoading();
-		
+
 	}
-	
+
 	private void loadAssets() {
-		//SingletonAssetManager m = SingletonAssetManager.getInstance();
-		
+		// SingletonAssetManager m = SingletonAssetManager.getInstance();
+
 	}
 }

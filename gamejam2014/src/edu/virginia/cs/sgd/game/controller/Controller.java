@@ -7,17 +7,18 @@ import edu.virginia.cs.sgd.game.model.Direction;
 import edu.virginia.cs.sgd.game.model.Model;
 
 public class Controller {
-	
+
 	public String activePlayer;
-	
+
 	public Controller(String startPlayer) {
 		activePlayer = startPlayer;
 	}
-	
+
 	public void onKeyPress(Model m, int keyCode) {
-		Gdx.app.log(this.getClass().getName(), "Key: " + Input.Keys.toString(keyCode));
-		
-		switch(keyCode) {
+		Gdx.app.log(this.getClass().getName(),
+				"Key: " + Input.Keys.toString(keyCode));
+
+		switch (keyCode) {
 		case Input.Keys.W:
 		case Input.Keys.UP:
 			m.move(activePlayer, Direction.NORTH);

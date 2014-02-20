@@ -25,21 +25,21 @@ public class Point {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	public Point copy() {
 		return new Point(x, y);
 	}
-	
+
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
-	
+
 	public boolean equals(Object o) {
-		if(o instanceof Point) {
+		if (o instanceof Point) {
 			Point p = (Point) o;
 			return p.getX() == x && p.getY() == y;
 		}
-		
+
 		return false;
 	}
 }
