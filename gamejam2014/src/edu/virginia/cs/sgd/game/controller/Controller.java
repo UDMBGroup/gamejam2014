@@ -43,10 +43,14 @@ public class Controller {
 			m.interact(activePlayer);
 			break;
 		case Input.Keys.J:
+<<<<<<< HEAD
 			for(Evidence key: (m.getCurrentPlayer()).getJournalLog().keySet()) {
 					System.out.println(key.getName() +"\n");
 					System.out.println(m.getCurrentPlayer().getJournalLog().get(key) + "\n");
 			}
+=======
+			m.openJournal(activePlayer);
+>>>>>>> origin/Jeremy
 			break;
 		}
 	}
