@@ -31,7 +31,7 @@ public class Model {
 	private Map<String, Character> characters;
 
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
-
+	private boolean b = false; //DELTE THIS
 	public Model(TiledMap map) {
 		this.map = map;
 		evidence = new HashMap<String, Evidence>();
@@ -74,7 +74,19 @@ public class Model {
 		players.add("programmer");
 		players.add("artist");
 	}
-
+	public void openJournal(String activeCharacter){
+		//First, I want to get all the evidence that the active Character has seen. Make a collection out of them.
+		//Then find a good way to display them
+		
+		if(b == true)
+			b = false;
+		else
+			b = true;
+		
+	}
+	public Boolean getBooleanToShowJournal(){
+		return b;
+	}
 	public void readInFile() {
 		System.out.println(SingletonAssetManager.getInstance().getModelData());
 		fileIn = new Scanner(SingletonAssetManager.getInstance().getModelData()

@@ -25,7 +25,7 @@ public class Viewer {
 	private OrthogonalTiledMapRenderer mapRenderer;
 	private BitmapFont font;
 	private Texture textBoxTexture;
-
+	public boolean bool = true;
 	public Viewer(OrthogonalTiledMapRenderer mapRenderer) {
 		camera = new OrthographicCamera();
 		batch = mapRenderer.getSpriteBatch();
@@ -67,7 +67,7 @@ public class Viewer {
 
 	}
 
-	public void renderView(Model m) {
+	public void renderView(Model m) { //Screen is 480 by 320
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
@@ -76,7 +76,11 @@ public class Viewer {
 
 		// batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-
+		if (m.getBooleanToShowJournal() ){
+			batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225,
+					currentCenter.getY() * 32 - 145, 480, 320);
+		}
+		else{
 		List<RenderData> listRData = m.getRenderData();
 		for (RenderData rData : listRData) {
 			// draw game objects
@@ -117,11 +121,16 @@ public class Viewer {
 				batch.draw(tex, p0.getX() * 32, p0.getY() * 32);
 			}
 		}
+		
+		
 		String messageOnScreen = m.getMessageOnScreen();
 		// if (!messageOnScreen.isEmpty())
 		// {
+		
 		batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225,
 				currentCenter.getY() * 32 - 145);
+		
+		
 		String[] allWords = messageOnScreen.split(" ");
 		int numChars = 0;
 		int lineNum = 0;
@@ -142,7 +151,9 @@ public class Viewer {
 		font.draw(batch, messageLine, currentCenter.getX() * 32 - 200,
 				currentCenter.getY() * 32 - 60 - ((lineNum) * 20));
 		// }
+		}
 		batch.end();
+		
 	}
 
 	public void moveMap(int deltaX, int deltaY) {
