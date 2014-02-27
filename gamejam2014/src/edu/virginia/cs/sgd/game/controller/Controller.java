@@ -41,6 +41,9 @@ public class Controller {
 		case Input.Keys.Z:
 			m.interact(activePlayer);
 			break;
+		case Input.Keys.J:
+			
+			break;
 		}
 	}
 

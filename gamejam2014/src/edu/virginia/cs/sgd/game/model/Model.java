@@ -187,6 +187,7 @@ public class Model {
 						this.setMessageOnScreen(mono);
 						this.updateShownBasedOnCollected();
 						found = true;
+						this.populateJournal(character);
 						break;
 					}
 				}
@@ -273,6 +274,16 @@ public class Model {
 		}
 
 		return res;
+	}
+	
+	public void populateJournal(String character){
+		Map<Evidence, String> populateJournal = new HashMap<Evidence,String>();
+		for(Evidence key : (characters.get(character)).getEvidenceMap().keySet()) {
+				if(characters.get(character).getIsCollected(key) == true) {
+						populateJournal.put(key,key.getCharMonologue(characters.get(character).getCharAssignment()));
+				}
+		}
+		characters.get(character).setJournalLog(populateJournal);
 	}
 
 	public Point getPosOfCharacter(String character) {

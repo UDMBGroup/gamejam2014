@@ -11,6 +11,7 @@ public class Character extends RenderData {
 	final private String charAssignment;
 	private Map<Evidence, Boolean> isCollected;
 	private Map<Evidence, Boolean> isShown;
+	private Map<Evidence, String> journalLog;
 
 	public Character(String name, String charAssignment, Point pos,
 			Map<String, Evidence> evidenceList,
@@ -19,6 +20,7 @@ public class Character extends RenderData {
 		this.charAssignment = charAssignment;
 		this.isCollected = new HashMap<Evidence, Boolean>();
 		this.isShown = new HashMap<Evidence, Boolean>();
+		this.journalLog = new HashMap<Evidence,String>();
 		for (Evidence key : evidenceList.values()) {
 			isCollected.put(key, false);
 		}
@@ -34,6 +36,20 @@ public class Character extends RenderData {
 		}
 	}
 
+	/**
+	 * @return the journalLog
+	 */
+	public Map<Evidence, String> getJournalLog() {
+		return journalLog;
+	}
+
+	/**
+	 * @param journalLog the journalLog to set
+	 */
+	public void setJournalLog(Map<Evidence, String> journalLog) {
+		this.journalLog = journalLog;
+	}
+
 	public void setCollected(Evidence evidence) {
 		if (!isCollected.get(evidence)) {
 			isCollected.put(evidence, true);
@@ -43,7 +59,10 @@ public class Character extends RenderData {
 	public boolean getIsCollected(Evidence evidence) {
 		return isCollected.get(evidence);
 	}
-
+	
+	public Map<Evidence,Boolean> getEvidenceMap() {
+			return this.isCollected;
+	}
 	public void setShown(Evidence evidence) {
 		if (!isShown.get(evidence)) {
 			isShown.put(evidence, true);
