@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 import edu.virginia.cs.sgd.game.model.Direction;
+import edu.virginia.cs.sgd.game.model.Evidence;
 import edu.virginia.cs.sgd.game.model.Model;
 
 public class Controller {
@@ -42,7 +43,10 @@ public class Controller {
 			m.interact(activePlayer);
 			break;
 		case Input.Keys.J:
-			
+			for(Evidence key: (m.getCurrentPlayer()).getJournalLog().keySet()) {
+					System.out.println(key.getName() +"\n");
+					System.out.println(m.getCurrentPlayer().getJournalLog().get(key) + "\n");
+			}
 			break;
 		}
 	}
