@@ -26,8 +26,8 @@ public class Evidence extends RenderData {
 		return monologues;
 	}
 
-	public String getCharMonologue(String charAssignment) {
-		return monologues.get(Integer.parseInt(charAssignment));
+	public String getCharMonologue(int charAssignment) {
+		return monologues.get(charAssignment);
 	}
 
 }

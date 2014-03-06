@@ -8,19 +8,19 @@ import edu.virginia.cs.sgd.viewer.RenderData;
 
 public class Character extends RenderData {
 
-	final private String charAssignment;
+	final private int charAssignment;
 	private Map<Evidence, Boolean> isCollected;
 	private Map<Evidence, Boolean> isShown;
 	private Map<Evidence, String> journalLog;
 
-	public Character(String name, String charAssignment, Point pos,
+	public Character(String name, int charAssignment, Point pos,
 			Map<String, Evidence> evidenceList,
 			Map<Evidence, String> initialIsShown) {
 		super(name, pos);
 		this.charAssignment = charAssignment;
 		this.isCollected = new HashMap<Evidence, Boolean>();
 		this.isShown = new HashMap<Evidence, Boolean>();
-		this.journalLog = new HashMap<Evidence,String>();
+		this.journalLog = new HashMap<Evidence, String>();
 		for (Evidence key : evidenceList.values()) {
 			isCollected.put(key, false);
 		}
@@ -44,7 +44,8 @@ public class Character extends RenderData {
 	}
 
 	/**
-	 * @param journalLog the journalLog to set
+	 * @param journalLog
+	 *            the journalLog to set
 	 */
 	public void setJournalLog(Map<Evidence, String> journalLog) {
 		this.journalLog = journalLog;
@@ -59,10 +60,11 @@ public class Character extends RenderData {
 	public boolean getIsCollected(Evidence evidence) {
 		return isCollected.get(evidence);
 	}
-	
-	public Map<Evidence,Boolean> getEvidenceMap() {
-			return this.isCollected;
+
+	public Map<Evidence, Boolean> getEvidenceMap() {
+		return this.isCollected;
 	}
+
 	public void setShown(Evidence evidence) {
 		if (!isShown.get(evidence)) {
 			isShown.put(evidence, true);
@@ -80,7 +82,7 @@ public class Character extends RenderData {
 		return isShown.get(evidence);
 	}
 
-	public String getCharAssignment() {
+	public int getCharAssignment() {
 		return charAssignment;
 	}
 
