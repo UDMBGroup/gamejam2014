@@ -1,5 +1,7 @@
 package edu.virginia.cs.sgd.game.controller;
 
+import java.util.ListIterator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
@@ -30,11 +32,31 @@ public class Controller {
 			break;
 		case Input.Keys.A:
 		case Input.Keys.LEFT:
-			m.move(activePlayer, Direction.WEST);
+			if(m.getBooleanToShowJournal()) {
+				if(m.getJournIter().hasPrevious()){
+					System.out.println(m.getJournIter().previous().getName());
+				}
+				else {
+						ListIterator<Evidence> list = m.getJournalIterator().listIterator(m.getJournalIterator().size());
+						m.setJournIter(list);
+						System.out.println(m.getJournIter().previous().getName());
+				}
+		}
+				m.move(activePlayer, Direction.WEST);
 			break;
 		case Input.Keys.D:
 		case Input.Keys.RIGHT:
-			m.move(activePlayer, Direction.EAST);
+				if(m.getBooleanToShowJournal()) {
+						if(m.getJournIter().hasNext()){
+							System.out.println(m.getJournIter().next().getName());
+						}
+						else {
+							ListIterator<Evidence> list = m.getJournalIterator().listIterator();
+							m.setJournIter(list);
+							System.out.println(m.getJournIter().next().getName());
+						}
+				}
+				m.move(activePlayer, Direction.EAST);
 			break;
 		case Input.Keys.ENTER:
 			activePlayer = m.getNextPlayer();
@@ -43,12 +65,8 @@ public class Controller {
 			m.interact(activePlayer);
 			break;
 		case Input.Keys.J:
-
-			for(Evidence key: (m.getCurrentPlayer()).getJournalLog().keySet()) {
-					System.out.println(key.getName() +"\n");
-					System.out.println(m.getCurrentPlayer().getJournalLog().get(key) + "\n");
-			}
-
+			ListIterator<Evidence> list = m.getJournalIterator().listIterator();
+			m.setJournIter(list);
 			m.openJournal(activePlayer);
 
 			break;

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
@@ -29,14 +30,31 @@ public class Model {
 
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
-
+	private LinkedList<Evidence> journalIterator;
+	private ListIterator<Evidence> journIter;
+	
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
+	/**
+	 * @return the journIter
+	 */
+	public ListIterator<Evidence> getJournIter() {
+		return journIter;
+	}
+	/**
+	 * @param journIter the journIter to set
+	 */
+	public void setJournIter(ListIterator<Evidence> journIter) {
+		this.journIter = journIter;
+	}
+
 	private boolean b = false; //DELTE THIS
 	public Model(TiledMap map) {
 		this.map = map;
 		evidence = new HashMap<String, Evidence>();
 		characters = new HashMap<String, Character>();
 		initialIsShown = new HashMap<Evidence, String>();
+		journalIterator = new LinkedList<Evidence>();
+		
 
 		this.readInFile();
 
@@ -293,11 +311,18 @@ public class Model {
 		for(Evidence key : (characters.get(character)).getEvidenceMap().keySet()) {
 				if(characters.get(character).getIsCollected(key) == true) {
 						populateJournal.put(key,key.getCharMonologue(characters.get(character).getCharAssignment()));
+						journalIterator.add(key);
 				}
 		}
 		characters.get(character).setJournalLog(populateJournal);
 	}
-
+	
+	/**
+	 * @return the journalIterator
+	 */
+	public LinkedList<Evidence> getJournalIterator() {
+		return journalIterator;
+	}
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
 	}
