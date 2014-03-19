@@ -105,7 +105,7 @@ public class Program extends Game implements ApplicationListener {
 		m.load("programmerJ", "data/programmerJ.png", Texture.class);
 
 		// m.load("testmap", "data/test.tmx", TiledMap.class);
-		m.load("map", "data/sitmapver3.tmx", TiledMap.class);
+		m.load("map", "data/sitmapver4.tmx", TiledMap.class);
 
 		m.loadModelData("data/ModelData.txt");
 		m.finishLoading();
