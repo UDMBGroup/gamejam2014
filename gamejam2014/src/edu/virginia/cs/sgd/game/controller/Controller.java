@@ -1,5 +1,6 @@
 package edu.virginia.cs.sgd.game.controller;
 
+import java.util.LinkedList;
 import java.util.ListIterator;
 
 import com.badlogic.gdx.Gdx;
@@ -54,6 +55,7 @@ public class Controller {
 							ListIterator<Evidence> list = m.getJournalIterator().listIterator();
 							m.setJournIter(list);
 							System.out.println(m.getJournIter().next().getName());
+							System.out.println(m.getJournalIterator().size());
 						}
 				}
 				m.move(activePlayer, Direction.EAST);
