@@ -34,6 +34,7 @@ public class Model {
 	private ListIterator<Evidence> journIter;
 	
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
+
 	/**
 	 * @return the journIter
 	 */
@@ -48,6 +49,7 @@ public class Model {
 	}
 
 	private boolean b = false; //DELTE THIS
+
 	public Model(TiledMap map) {
 		this.map = map;
 		evidence = new HashMap<String, Evidence>();
@@ -72,11 +74,11 @@ public class Model {
 			System.out.println(o.getName() + " " + x + " " + y);
 		}
 
-		Character programmer = new Character("John Nicholson", "0", new Point(
-				9, 5), this.evidence, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", "1",
-				new Point(9, 7), this.evidence, this.initialIsShown);
-		Character writer = new Character("Annie N.", "2", new Point(10, 6),
+		Character programmer = new Character("John Nicholson", 0, new Point(9,
+				5), this.evidence, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", 1, new Point(9, 7),
+				this.evidence, this.initialIsShown);
+		Character writer = new Character("Annie N.", 2, new Point(10, 6),
 				this.evidence, this.initialIsShown);
 
 		programmer.setShown(this.evidence.get("the corpse"));
@@ -92,19 +94,23 @@ public class Model {
 		players.add("programmer");
 		players.add("artist");
 	}
-	public void openJournal(String activeCharacter){
-		//First, I want to get all the evidence that the active Character has seen. Make a collection out of them.
-		//Then find a good way to display them
-		
-		if(b == true)
+
+	public void openJournal(String activeCharacter) {
+		// First, I want to get all the evidence that the active Character has
+		// seen. Make a collection out of them.
+		// Then find a good way to display them
+
+		if (b == true)
 			b = false;
 		else
 			b = true;
-		
+
 	}
-	public Boolean getBooleanToShowJournal(){
+
+	public Boolean getBooleanToShowJournal() {
 		return b;
 	}
+
 	public void readInFile() {
 		System.out.println(SingletonAssetManager.getInstance().getModelData());
 		fileIn = new Scanner(SingletonAssetManager.getInstance().getModelData()
@@ -141,7 +147,7 @@ public class Model {
 		return mapHeight;
 	}
 
-	public String getMonologue(String evidence_arg, String character) {
+	public String getMonologue(String evidence_arg, int character) {
 		return this.evidence.get(evidence_arg).getCharMonologue(character);
 	}
 
@@ -292,7 +298,9 @@ public class Model {
 		List<RenderData> res = new ArrayList<RenderData>();
 
 		for (Evidence e : evidence.values()) {
-			if (e.getName().equals("programmer") || e.getName().equals("artist") || e.getName().equals("writer")) {
+			if (e.getName().equals("programmer")
+					|| e.getName().equals("artist")
+					|| e.getName().equals("writer")) {
 				continue;
 			} else {
 				res.add(e);
@@ -311,7 +319,9 @@ public class Model {
 		for(Evidence key : (characters.get(character)).getEvidenceMap().keySet()) {
 				if(characters.get(character).getIsCollected(key) == true) {
 						populateJournal.put(key,key.getCharMonologue(characters.get(character).getCharAssignment()));
+						if(!journalIterator.contains(key)){
 						journalIterator.add(key);
+						}
 				}
 		}
 		characters.get(character).setJournalLog(populateJournal);
