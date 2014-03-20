@@ -34,41 +34,63 @@ public class Controller {
 		case Input.Keys.A:
 		case Input.Keys.LEFT:
 			if(m.getBooleanToShowJournal()) {
-				if(m.getJournIter().hasPrevious()){
-					System.out.println(m.getJournIter().previous().getName());
+				if(m.getCurrentPlayer().getJournalIterator().size() > 0) {
+				if(m.getCurrentPlayer().getJournIter().hasPrevious()){
+					Evidence e = m.getCurrentPlayer().getJournIter().previous();
+					m.getCurrentPlayer().setJournalEvidenceName(e.getName());
+					m.getCurrentPlayer().setJournalEvidenceMono(e.getCharMonologue(m.getCurrentPlayer().getCharAssignment()));
 				}
 				else {
-						ListIterator<Evidence> list = m.getJournalIterator().listIterator(m.getJournalIterator().size());
-						m.setJournIter(list);
-						System.out.println(m.getJournIter().previous().getName());
+						ListIterator<Evidence> list = m.getCurrentPlayer().getJournalIterator().listIterator(m.getCurrentPlayer().getJournalIterator().size());
+						m.getCurrentPlayer().setJournIter(list);
+						Evidence e = m.getCurrentPlayer().getJournIter().previous();
+						m.getCurrentPlayer().setJournalEvidenceName(e.getName());
+						m.getCurrentPlayer().setJournalEvidenceMono(e.getCharMonologue(m.getCurrentPlayer().getCharAssignment()));
 				}
 		}
+			}
+			else {
 				m.move(activePlayer, Direction.WEST);
+			}
 			break;
 		case Input.Keys.D:
 		case Input.Keys.RIGHT:
 				if(m.getBooleanToShowJournal()) {
-						if(m.getJournIter().hasNext()){
-							System.out.println(m.getJournIter().next().getName());
+						if(m.getCurrentPlayer().getJournalIterator().size() > 0) {
+						if(m.getCurrentPlayer().getJournIter().hasNext()){
+							Evidence e = m.getCurrentPlayer().getJournIter().next();
+							m.getCurrentPlayer().setJournalEvidenceName(e.getName());
+							m.getCurrentPlayer().setJournalEvidenceMono(e.getCharMonologue(m.getCurrentPlayer().getCharAssignment()));
 						}
 						else {
-							ListIterator<Evidence> list = m.getJournalIterator().listIterator();
-							m.setJournIter(list);
-							System.out.println(m.getJournIter().next().getName());
-							System.out.println(m.getJournalIterator().size());
+							ListIterator<Evidence> list = m.getCurrentPlayer().getJournalIterator().listIterator();
+							m.getCurrentPlayer().setJournIter(list);
+							Evidence e = m.getCurrentPlayer().getJournIter().next();
+							m.getCurrentPlayer().setJournalEvidenceName(e.getName());
+							m.getCurrentPlayer().setJournalEvidenceMono(e.getCharMonologue(m.getCurrentPlayer().getCharAssignment()));
 						}
 				}
+				}
+				else {
 				m.move(activePlayer, Direction.EAST);
+				}
 			break;
 		case Input.Keys.ENTER:
+			if(!m.getBooleanToShowJournal()) {
 			activePlayer = m.getNextPlayer();
+			}
 			break;
 		case Input.Keys.Z:
 			m.interact(activePlayer);
 			break;
 		case Input.Keys.J:
-			ListIterator<Evidence> list = m.getJournalIterator().listIterator();
-			m.setJournIter(list);
+			ListIterator<Evidence> list = m.getCurrentPlayer().getJournalIterator().listIterator();
+			m.getCurrentPlayer().setJournIter(list);
+			if(m.getCurrentPlayer().getJournalIterator().size() > 0) {
+			Evidence e = m.getCurrentPlayer().getJournalIterator().peekFirst();
+			m.getCurrentPlayer().setJournalEvidenceName(e.getName());
+			m.getCurrentPlayer().setJournalEvidenceMono(e.getCharMonologue(m.getCurrentPlayer().getCharAssignment()));
+			}
 			m.openJournal(activePlayer);
 
 			break;

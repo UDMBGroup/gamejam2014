@@ -30,23 +30,8 @@ public class Model {
 
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
-	private LinkedList<Evidence> journalIterator;
-	private ListIterator<Evidence> journIter;
 	
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
-
-	/**
-	 * @return the journIter
-	 */
-	public ListIterator<Evidence> getJournIter() {
-		return journIter;
-	}
-	/**
-	 * @param journIter the journIter to set
-	 */
-	public void setJournIter(ListIterator<Evidence> journIter) {
-		this.journIter = journIter;
-	}
 
 	private boolean b = false; //DELTE THIS
 
@@ -55,8 +40,6 @@ public class Model {
 		evidence = new HashMap<String, Evidence>();
 		characters = new HashMap<String, Character>();
 		initialIsShown = new HashMap<Evidence, String>();
-		journalIterator = new LinkedList<Evidence>();
-		
 
 		this.readInFile();
 
@@ -319,20 +302,16 @@ public class Model {
 		for(Evidence key : (characters.get(character)).getEvidenceMap().keySet()) {
 				if(characters.get(character).getIsCollected(key) == true) {
 						populateJournal.put(key,key.getCharMonologue(characters.get(character).getCharAssignment()));
-						if(!journalIterator.contains(key)){
-						journalIterator.add(key);
+						if(!characters.get(character).getJournalIterator().contains(key)){
+							LinkedList<Evidence> e = characters.get(character).getJournalIterator();
+							e.add(key);
+							characters.get(character).setJournalIterator(e);
 						}
 				}
 		}
 		characters.get(character).setJournalLog(populateJournal);
 	}
 	
-	/**
-	 * @return the journalIterator
-	 */
-	public LinkedList<Evidence> getJournalIterator() {
-		return journalIterator;
-	}
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
 	}
