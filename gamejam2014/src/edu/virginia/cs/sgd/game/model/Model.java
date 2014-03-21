@@ -24,6 +24,7 @@ public class Model {
 
 	private Scanner fileIn;
 	private TiledMap map;
+	private int mapSize = 14;
 	private Map<Evidence, String> initialIsShown;
 
 	private Queue<String> players;
@@ -58,10 +59,10 @@ public class Model {
 		}
 
 		Character programmer = new Character("John Nicholson", 0, new Point(9,
-				5), this.evidence, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", 1, new Point(9, 7),
+				mapSize - 9), this.evidence, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", 1, new Point(9, mapSize - 7),
 				this.evidence, this.initialIsShown);
-		Character writer = new Character("Annie N.", 2, new Point(10, 6),
+		Character writer = new Character("Annie N.", 2, new Point(10, mapSize - 8),
 				this.evidence, this.initialIsShown);
 
 		programmer.setShown(this.evidence.get("the corpse"));
