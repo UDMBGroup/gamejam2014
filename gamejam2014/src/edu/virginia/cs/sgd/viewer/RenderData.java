@@ -5,7 +5,7 @@ import edu.virginia.cs.sgd.util.Point;
 public class RenderData {
 
 	private String name;
-	private Point pos;
+	protected Point pos;
 
 	public RenderData(String name, Point pos) {
 		super();

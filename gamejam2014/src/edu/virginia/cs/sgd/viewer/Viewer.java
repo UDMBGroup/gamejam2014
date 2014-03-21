@@ -1,6 +1,7 @@
 package edu.virginia.cs.sgd.viewer;
 
 import java.util.List;
+import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -26,6 +27,7 @@ public class Viewer {
 	private BitmapFont font;
 	private Texture textBoxTexture;
 	private Texture writerJournal;
+	private Texture artistJournal;
 	private Texture programmerJournal;
 	public boolean bool = true;
 
@@ -39,6 +41,7 @@ public class Viewer {
 		writerJournal = SingletonAssetManager.getInstance().get("writerJ");
 		programmerJournal = SingletonAssetManager.getInstance().get(
 				"programmerJ");
+		artistJournal = SingletonAssetManager.getInstance().get("artistJ");
 
 		updateCamera();
 		camera.update();
@@ -82,6 +85,7 @@ public class Viewer {
 
 		// batch.setProjectionMatrix(camera.combined);
 		batch.begin();
+
 		if (m.getBooleanToShowJournal()) {
 			switch (m.getCurrentPlayer().getCharAssignment()) {
 
@@ -92,7 +96,7 @@ public class Viewer {
 				font.draw(batch, eviName, currentCenter.getX() * 32,
 						currentCenter.getY() * 32 + 100);
 				String eviMono = m.getCurrentPlayer().getJournalEvidenceMono();
-				
+
 				String[] allWords = eviMono.split(" ");
 				int numChars = 0;
 				int lineNum = 0;
@@ -112,17 +116,48 @@ public class Viewer {
 
 				}
 				font.draw(batch, messageLine, currentCenter.getX() * 32 - 175,
-						currentCenter.getY() * 32 - 60 - (lineNum*20));
+						currentCenter.getY() * 32 - 60 - (lineNum * 20));
 				break;
 
 			case 1:
+				batch.draw(artistJournal, currentCenter.getX() * 32 - 225,
+						currentCenter.getY() * 32 - 145, 480, 320);
+				String eviNameA = m.getCurrentPlayer().getJournalEvidenceName();
+				font.draw(batch, eviNameA, currentCenter.getX() * 32 - 175,
+						currentCenter.getY() * 32 + 100);
+				String eviMonoA = m.getCurrentPlayer().getJournalEvidenceMono();
+
+				String[] allWordsA = eviMonoA.split(" ");
+				int numCharsA = 0;
+				int lineNumA = 0;
+				String messageLineA = "";
+				for (String word : allWordsA) {
+
+					messageLineA += word + " ";
+					numCharsA += word.length() + 1;
+					if (numCharsA >= 20) {
+						font.draw(batch, messageLineA,
+								currentCenter.getX() * 32 + 50,
+								currentCenter.getY() * 32 + 110
+										- (lineNumA * 20));
+						lineNumA++;
+						messageLineA = "";
+						numCharsA = 0;
+					}
+
+				}
+				font.draw(batch, messageLineA, currentCenter.getX() * 32 + 50,
+						currentCenter.getY() * 32 + 110 - (lineNumA * 20));
+				break;
+
+			case 2:
 				batch.draw(writerJournal, currentCenter.getX() * 32 - 225,
 						currentCenter.getY() * 32 - 145, 480, 320);
 				String eviNameW = m.getCurrentPlayer().getJournalEvidenceName();
-				font.draw(batch, eviNameW, currentCenter.getX() * 32-175,
+				font.draw(batch, eviNameW, currentCenter.getX() * 32 - 175,
 						currentCenter.getY() * 32 + 100);
 				String eviMonoW = m.getCurrentPlayer().getJournalEvidenceMono();
-				
+
 				String[] allWordsW = eviMonoW.split(" ");
 				int numCharsW = 0;
 				int lineNumW = 0;
@@ -134,7 +169,8 @@ public class Viewer {
 					if (numCharsW >= 20) {
 						font.draw(batch, messageLineW,
 								currentCenter.getX() * 32 + 50,
-								currentCenter.getY() * 32 + 110 - (lineNumW * 20));
+								currentCenter.getY() * 32 + 110
+										- (lineNumW * 20));
 						lineNumW++;
 						messageLineW = "";
 						numCharsW = 0;
@@ -142,37 +178,7 @@ public class Viewer {
 
 				}
 				font.draw(batch, messageLineW, currentCenter.getX() * 32 + 50,
-						currentCenter.getY() * 32 + 110- (lineNumW*20));
-				break;
-
-			case 2:
-				batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225,
-						currentCenter.getY() * 32 - 145, 480, 320);
-				String eviNameA = m.getCurrentPlayer().getJournalEvidenceName();
-				font.draw(batch, eviNameA, currentCenter.getX() * 32,
-						currentCenter.getY() * 32 + 100);
-				String eviMonoA = m.getCurrentPlayer().getJournalEvidenceMono();
-				
-				String[] allWordsA = eviMonoA.split(" ");
-				int numCharsA = 0;
-				int lineNumA = 0;
-				String messageLineA = "";
-				for (String word : allWordsA) {
-
-					messageLineA += word + " ";
-					numCharsA += word.length() + 1;
-					if (numCharsA >= 60) {
-						font.draw(batch, messageLineA,
-								currentCenter.getX() * 32 - 175,
-								currentCenter.getY() * 32 - 10 - (lineNumA* 20));
-						lineNumA++;
-						messageLineA = "";
-						numCharsA = 0;
-					}
-
-				}
-				font.draw(batch, messageLineA, currentCenter.getX() * 32 - 175,
-						currentCenter.getY() * 32 - 10 - (lineNumA*20));
+						currentCenter.getY() * 32 + 110 - (lineNumW * 20));
 				break;
 
 			default:

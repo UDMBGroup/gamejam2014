@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -31,15 +31,17 @@ public class Model {
 
 	private Map<String, Evidence> evidence;
 	private Map<String, Character> characters;
-	
+	private Map<Point, Point> roomTrans;
+
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
 
-	private boolean b = false; //DELTE THIS
+	private boolean b = false; // DELTE THIS
 
 	public Model(TiledMap map) {
 		this.map = map;
 		evidence = new HashMap<String, Evidence>();
 		characters = new HashMap<String, Character>();
+		roomTrans = new HashMap<Point, Point>();
 		initialIsShown = new HashMap<Evidence, String>();
 
 		this.readInFile();
@@ -58,12 +60,35 @@ public class Model {
 			System.out.println(o.getName() + " " + x + " " + y);
 		}
 
+		i = map.getLayers().get("RoomTrans").getObjects().iterator();
+		MapObjects rt = map.getLayers().get("RoomTrans").getObjects();
+
+		while (i.hasNext()) {
+			MapObject o = i.next();
+			int x = Integer.parseInt((String) o.getProperties().get("x"));
+			int y = mapSize
+					- Integer.parseInt((String) o.getProperties().get("y"));
+
+			Point p = new Point((int) x, (int) y);
+
+			int xNext = Integer.parseInt((String) (rt.get((String) o
+					.getProperties().get("next"))).getProperties().get("x"));
+			int yNext = mapSize
+					- Integer.parseInt((String) (rt.get((String) o
+							.getProperties().get("next"))).getProperties().get(
+							"y"));
+
+			Point pNext = new Point((int) xNext, (int) yNext);
+
+			roomTrans.put(p, pNext);
+		}
+
 		Character programmer = new Character("John Nicholson", 0, new Point(9,
 				mapSize - 9), this.evidence, this.initialIsShown);
-		Character artist = new Character("Scarlet Velvet", 1, new Point(9, mapSize - 7),
-				this.evidence, this.initialIsShown);
-		Character writer = new Character("Annie N.", 2, new Point(10, mapSize - 8),
-				this.evidence, this.initialIsShown);
+		Character artist = new Character("Scarlet Velvet", 1, new Point(9,
+				mapSize - 7), this.evidence, this.initialIsShown);
+		Character writer = new Character("Annie N.", 2, new Point(10,
+				mapSize - 8), this.evidence, this.initialIsShown);
 
 		programmer.setShown(this.evidence.get("the corpse"));
 		artist.setShown(this.evidence.get("the corpse"));
@@ -140,6 +165,13 @@ public class Model {
 		Point p = characters.get(character).getPos();
 		int newX = p.getX();
 		int newY = p.getY();
+		
+		for (Point point : roomTrans.keySet()) {
+			if (point.getX() == newX && point.getY() == newY) {
+				p.setX(roomTrans.get(point).getX());
+				p.setY(roomTrans.get(point).getY());
+			}
+		}
 
 		switch (dir) {
 		case NORTH:
@@ -297,22 +329,26 @@ public class Model {
 
 		return res;
 	}
-	
-	public void populateJournal(String character){
-		Map<Evidence, String> populateJournal = new HashMap<Evidence,String>();
-		for(Evidence key : (characters.get(character)).getEvidenceMap().keySet()) {
-				if(characters.get(character).getIsCollected(key) == true) {
-						populateJournal.put(key,key.getCharMonologue(characters.get(character).getCharAssignment()));
-						if(!characters.get(character).getJournalIterator().contains(key)){
-							LinkedList<Evidence> e = characters.get(character).getJournalIterator();
-							e.add(key);
-							characters.get(character).setJournalIterator(e);
-						}
+
+	public void populateJournal(String character) {
+		Map<Evidence, String> populateJournal = new HashMap<Evidence, String>();
+		for (Evidence key : (characters.get(character)).getEvidenceMap()
+				.keySet()) {
+			if (characters.get(character).getIsCollected(key) == true) {
+				populateJournal.put(key, key.getCharMonologue(characters.get(
+						character).getCharAssignment()));
+				if (!characters.get(character).getJournalIterator()
+						.contains(key)) {
+					LinkedList<Evidence> e = characters.get(character)
+							.getJournalIterator();
+					e.add(key);
+					characters.get(character).setJournalIterator(e);
 				}
+			}
 		}
 		characters.get(character).setJournalLog(populateJournal);
 	}
-	
+
 	public Point getPosOfCharacter(String character) {
 		return characters.get(character).getPos();
 	}
@@ -333,6 +369,10 @@ public class Model {
 		String top = players.poll();
 		players.add(top);
 		return players.peek();
+	}
+
+	public Map<Point, Point> getRoomTrans() {
+		return roomTrans;
 	}
 
 	public String getMessageOnScreen() {

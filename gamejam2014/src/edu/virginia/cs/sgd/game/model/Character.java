@@ -147,5 +147,9 @@ public class Character extends RenderData {
 	public int getCharAssignment() {
 		return charAssignment;
 	}
+	
+	public void setPos(Point p) {
+		super.pos = p;
+	}
 
 }
