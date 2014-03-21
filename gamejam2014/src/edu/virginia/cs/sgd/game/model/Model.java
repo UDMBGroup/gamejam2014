@@ -24,7 +24,7 @@ public class Model {
 
 	private Scanner fileIn;
 	private TiledMap map;
-	private int mapSize = 49;
+	private int mapSize = 14;
 	private Map<Evidence, String> initialIsShown;
 
 	private Queue<String> players;
