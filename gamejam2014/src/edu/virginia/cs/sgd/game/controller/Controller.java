@@ -25,11 +25,15 @@ public class Controller {
 		switch (keyCode) {
 		case Input.Keys.W:
 		case Input.Keys.UP:
-			m.move(activePlayer, Direction.NORTH);
+			if (!m.getBooleanToShowJournal()) {
+				m.move(activePlayer, Direction.NORTH);
+			}
 			break;
 		case Input.Keys.S:
 		case Input.Keys.DOWN:
-			m.move(activePlayer, Direction.SOUTH);
+			if (!m.getBooleanToShowJournal()) {
+				m.move(activePlayer, Direction.SOUTH);
+			}
 			break;
 		case Input.Keys.A:
 		case Input.Keys.LEFT:
@@ -97,9 +101,12 @@ public class Controller {
 			}
 			break;
 		case Input.Keys.Z:
-			m.interact(activePlayer);
+			if (!m.getBooleanToShowJournal()) {
+				m.interact(activePlayer);
+			}
 			break;
 		case Input.Keys.J:
+			m.togglePauseT();
 			ListIterator<Evidence> list = m.getCurrentPlayer()
 					.getJournalIterator().listIterator();
 			m.getCurrentPlayer().setJournIter(list);

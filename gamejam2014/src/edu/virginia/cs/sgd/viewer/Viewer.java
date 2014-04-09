@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import edu.virginia.cs.sgd.game.model.Character;
 import edu.virginia.cs.sgd.game.model.Evidence;
 import edu.virginia.cs.sgd.game.model.Model;
+import edu.virginia.cs.sgd.game.timer.Timer;
 import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 
@@ -29,6 +30,7 @@ public class Viewer {
 	private Texture writerJournal;
 	private Texture artistJournal;
 	private Texture programmerJournal;
+	private Timer time;
 	public boolean bool = true;
 
 	public Viewer(OrthogonalTiledMapRenderer mapRenderer) {
@@ -42,6 +44,7 @@ public class Viewer {
 		programmerJournal = SingletonAssetManager.getInstance().get(
 				"programmerJ");
 		artistJournal = SingletonAssetManager.getInstance().get("artistJ");
+		time = new Timer();
 
 		updateCamera();
 		camera.update();
@@ -255,6 +258,13 @@ public class Viewer {
 			font.draw(batch, messageLine, currentCenter.getX() * 32 - 200,
 					currentCenter.getY() * 32 - 60 - ((lineNum) * 20));
 			// }
+		}
+		if (m.getPauseT()) {
+			time.pause();
+		} else {
+			time.resume();
+			font.draw(batch, time.toString(), currentCenter.getX() * 32 + 215,
+					currentCenter.getY() * 32 - 120);
 		}
 		batch.end();
 

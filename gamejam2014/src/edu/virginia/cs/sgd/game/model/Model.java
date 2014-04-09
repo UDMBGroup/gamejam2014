@@ -36,6 +36,7 @@ public class Model {
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
 
 	private boolean b = false; // DELTE THIS
+	private boolean pauseT = false;
 
 	public Model(TiledMap map) {
 		this.map = map;
@@ -165,7 +166,7 @@ public class Model {
 		Point p = characters.get(character).getPos();
 		int newX = p.getX();
 		int newY = p.getY();
-		
+
 		for (Point point : roomTrans.keySet()) {
 			if (point.getX() == newX && point.getY() == newY) {
 				p.setX(roomTrans.get(point).getX());
@@ -385,5 +386,17 @@ public class Model {
 
 	public void setMessageOnScreen(String message) {
 		messageOnScreen = message;
+	}
+	
+	public boolean getPauseT() {
+		return pauseT;
+	}
+	
+	public void togglePauseT() {
+		if (pauseT) {
+			pauseT = false;
+		} else {
+			pauseT = true;
+		}
 	}
 }
