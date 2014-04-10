@@ -35,8 +35,12 @@ public class Model {
 
 	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
 
-	private boolean b = false; // DELTE THIS
+	private boolean journalBool = false; // DELTE THIS
 	private boolean pauseT = false;
+	private boolean accuseBool = false;
+	
+	private ArrayList<Integer> accusation;
+	private ArrayList<Integer> correctAccuse;
 
 	public Model(TiledMap map) {
 		this.map = map;
@@ -44,6 +48,13 @@ public class Model {
 		characters = new HashMap<String, Character>();
 		roomTrans = new HashMap<Point, Point>();
 		initialIsShown = new HashMap<Evidence, String>();
+		accusation = new ArrayList<Integer>();
+		
+		correctAccuse = new ArrayList<Integer>();
+		correctAccuse.add(0); // which character?
+		correctAccuse.add(0); // which room?
+		correctAccuse.add(0); // which weapon?
+
 
 		this.readInFile();
 
@@ -110,15 +121,31 @@ public class Model {
 		// seen. Make a collection out of them.
 		// Then find a good way to display them
 
-		if (b == true)
-			b = false;
+		if (journalBool == true)
+			journalBool = false;
 		else
-			b = true;
+			journalBool = true;
 
 	}
 
 	public Boolean getBooleanToShowJournal() {
-		return b;
+		return journalBool;
+	}
+	
+	public boolean getBooleanToShowAccuse() {
+		return accuseBool;
+	}
+	
+	public void setAccuse() {
+		accuseBool = true;
+	}
+	
+	public int getAccuseStateFlag() {
+		//0 means no character accused
+		//1 means character accused
+		//2 means room selected
+		//3 means weapon selected
+		return accusation.size();
 	}
 
 	public void readInFile() {
@@ -399,4 +426,30 @@ public class Model {
 			pauseT = true;
 		}
 	}
+
+	public void addAccusationParam(int x) {
+		if (accusation.size() > 3)
+			return;
+		accusation.add(x);
+		if (accusation.size() == 3) {
+			accuse();
+		}
+	}
+	
+	private void accuse() {
+		if (accusation.equals(correctAccuse))
+			win();
+		else lose();
+	}
+
+	private void win() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void lose() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

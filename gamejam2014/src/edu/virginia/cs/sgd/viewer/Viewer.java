@@ -32,6 +32,9 @@ public class Viewer {
 	private Texture programmerJournal;
 	private Timer time;
 	public boolean bool = true;
+	private String characterAccuseText;
+	private String roomAccuseText;
+	private String weaponAccuseText;
 
 	public Viewer(OrthogonalTiledMapRenderer mapRenderer) {
 		camera = new OrthographicCamera();
@@ -45,9 +48,19 @@ public class Viewer {
 				"programmerJ");
 		artistJournal = SingletonAssetManager.getInstance().get("artistJ");
 		time = new Timer();
+		
+		setAccuseTexts();
 
 		updateCamera();
 		camera.update();
+	}
+
+	private void setAccuseTexts() {
+		characterAccuseText = "Select a character!";
+		
+		roomAccuseText = "Select a room!";
+		
+		weaponAccuseText = "Select a weapon!";		
 	}
 
 	public void dispose() {
@@ -188,6 +201,27 @@ public class Viewer {
 				break;
 
 			}
+		} else if (m.getBooleanToShowAccuse()) {
+			batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225,
+					currentCenter.getY() * 32 - 145, 480, 320);
+			//write message to choose character/weapon/room
+			switch (m.getAccuseStateFlag()) {
+				case 0:
+					//show character text
+					font.draw(batch, characterAccuseText, currentCenter.getX() * 32 + 50,
+							currentCenter.getY() * 32 + 110);
+					break;
+				case 1:
+					//show room text
+					font.draw(batch, roomAccuseText, currentCenter.getX() * 32 + 50,
+							currentCenter.getY() * 32 + 110);
+					break;
+				case 2:
+					//show weapon text
+					font.draw(batch, weaponAccuseText, currentCenter.getX() * 32 + 50,
+							currentCenter.getY() * 32 + 110);
+					break;
+			}
 		} else {
 			List<RenderData> listRData = m.getRenderData();
 			for (RenderData rData : listRData) {
@@ -263,8 +297,13 @@ public class Viewer {
 			time.pause();
 		} else {
 			time.resume();
-			font.draw(batch, time.toString(), currentCenter.getX() * 32 + 215,
-					currentCenter.getY() * 32 - 120);
+			if (time.getCurrentTime()==0) {
+				m.setAccuse();
+			}
+			else {
+				font.draw(batch, time.toString(), currentCenter.getX() * 32 + 215,
+						currentCenter.getY() * 32 - 120);
+			}
 		}
 		batch.end();
 
