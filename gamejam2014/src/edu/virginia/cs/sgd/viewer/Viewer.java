@@ -208,18 +208,36 @@ public class Viewer {
 			switch (m.getAccuseStateFlag()) {
 				case 0:
 					//show character text
-					font.draw(batch, characterAccuseText, currentCenter.getX() * 32 + 50,
-							currentCenter.getY() * 32 + 110);
+					font.draw(batch, characterAccuseText, currentCenter.getX() * 32 - 50,
+							currentCenter.getY() * 32 + 50);
+					font.draw(batch, "1. The Programmer", currentCenter.getX() * 32 - 200,
+							currentCenter.getY() * 32 + 20);
+					font.draw(batch, "2. The Artist", currentCenter.getX() * 32 - 50,
+							currentCenter.getY() * 32 + 20);
+					font.draw(batch, "3. The Writer", currentCenter.getX() * 32 + 100,
+							currentCenter.getY() * 32 + 20);
 					break;
 				case 1:
 					//show room text
-					font.draw(batch, roomAccuseText, currentCenter.getX() * 32 + 50,
-							currentCenter.getY() * 32 + 110);
+					font.draw(batch, roomAccuseText, currentCenter.getX() * 32 - 50,
+							currentCenter.getY() * 32 + 50);
+					font.draw(batch, "1. The Study", currentCenter.getX() * 32 - 200,
+							currentCenter.getY() * 32 + 20);
+					font.draw(batch, "2. The Kitchen", currentCenter.getX() * 32 - 50,
+							currentCenter.getY() * 32 + 20);
+					font.draw(batch, "3. The Dining Room", currentCenter.getX() * 32 + 100,
+							currentCenter.getY() * 32 + 20);
 					break;
 				case 2:
 					//show weapon text
-					font.draw(batch, weaponAccuseText, currentCenter.getX() * 32 + 50,
-							currentCenter.getY() * 32 + 110);
+					font.draw(batch, weaponAccuseText, currentCenter.getX() * 32 - 50,
+							currentCenter.getY() * 32 + 50);
+					font.draw(batch, "1. The Cable", currentCenter.getX() * 32 - 200,
+							currentCenter.getY() * 32 + 20);
+					font.draw(batch, "2. The Poison", currentCenter.getX() * 32 - 50,
+							currentCenter.getY() * 32 + 20);
+					font.draw(batch, "3. The Candlestick", currentCenter.getX() * 32 + 100,
+							currentCenter.getY() * 32 + 20);
 					break;
 			}
 		} else {

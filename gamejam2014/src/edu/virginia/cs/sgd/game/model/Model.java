@@ -51,9 +51,9 @@ public class Model {
 		accusation = new ArrayList<Integer>();
 		
 		correctAccuse = new ArrayList<Integer>();
-		correctAccuse.add(0); // which character?
-		correctAccuse.add(0); // which room?
-		correctAccuse.add(0); // which weapon?
+		correctAccuse.add(1); // which character?
+		correctAccuse.add(2); // which room?
+		correctAccuse.add(3); // which weapon?
 
 
 		this.readInFile();
@@ -443,12 +443,12 @@ public class Model {
 	}
 
 	private void win() {
-		// TODO Auto-generated method stub
+		System.out.println("You win!");
 		
 	}
 
 	private void lose() {
-		// TODO Auto-generated method stub
+		System.out.println("Try again!");
 		
 	}
 	
