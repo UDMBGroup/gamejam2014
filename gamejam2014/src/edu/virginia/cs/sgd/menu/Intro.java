@@ -36,15 +36,15 @@ public class Intro extends AbstractScreen {
 		TextureRegion tr = new TextureRegion(splashTexture);
 		Drawable splashDrawable = new TextureRegionDrawable(tr);
 
-		Intro = new Image(splashDrawable, Scaling.stretch);
-		Intro.setFillParent(true);
+		Intro = new Image(splashDrawable);
+		//Intro.setFillParent(true);
 
 		// configure the fade-in/out effect on the splash image
 
-		Intro.setPosition(0, -320);
+		Intro.setPosition(0, -4500);
 		MoveToAction moveTo = new MoveToAction();
-		moveTo.setPosition(0, 640);
-		moveTo.setDuration(50f);
+		moveTo.setPosition(0, 4000);
+		moveTo.setDuration(150f);
 		Intro.addAction(sequence(moveTo, new Action() {
 
 					@Override
