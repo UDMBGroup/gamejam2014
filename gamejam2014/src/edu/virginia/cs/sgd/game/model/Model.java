@@ -235,9 +235,9 @@ public class Model {
 
 	public void interact(String character) {
 		Point p = characters.get(character).getPos();
-		int[] dx = { 0, 1, 0, -1 };
-		int[] dy = { -1, 0, 1, 0 };
-		for (int i = 0; i < 4; i++) {
+		int[] dx = { 0, 1, 0, -1, 0 };
+		int[] dy = { -1, 0, 1, 0, 0 };
+		for (int i = 0; i < 5; i++) {
 
 			boolean found = false;
 			Point p1 = new Point(p.getX() + dx[i], p.getY() + dy[i]);
@@ -296,7 +296,6 @@ public class Model {
 						} else if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("snacks"));
 							chara.setShown(this.evidence.get("manuscript"));
-							chara.setShown(this.evidence.get("the purse"));
 							chara.setShown(this.evidence.get("knives"));
 							chara.setShown(this.evidence.get("scuffs"));
 						}
@@ -323,8 +322,9 @@ public class Model {
 					}
 
 					if (ev.getName().equals("computer")) {
-						if (chara.getName().equals("Scarlet Velvet")) {
-							chara.setShown(this.evidence.get("missing weapon"));
+						if (chara.getName().equals("Scarlet Velvet") && characters.get("artist").getIsCollected(
+								evidence.get("manuscript"))) {
+							chara.setShown(this.evidence.get("the purse"));
 						}
 					}
 
@@ -340,11 +340,6 @@ public class Model {
 						}
 					}
 					
-					if (ev.getName().equals("the purse")) {
-						if (chara.getName().equals("Scarlet Velvet")) {
-							chara.setShown(this.evidence.get("chair"));
-						}
-					}
 					
 					if (ev.getName().equals("scotch glass")) {
 						if (chara.getName().equals("Annie N.")) {

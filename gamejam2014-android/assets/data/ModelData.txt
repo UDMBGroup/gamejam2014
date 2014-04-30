@@ -1,15 +1,15 @@
 the corpse
--It's Mr.Bigglesworth dead body. It looks like he was hit in the back of the head...
+-It's Uncle Bigglesworth's dead body. It looks like he was hit in the back of the head...
 -*sniff* Mr.Bigglesworth *sniff* Wait is that a cheeto stain on his collar?
--Poor Mr.Bigglesworth. He was such a dear friend and was like a father to me. Why would someone slip poison into his mouth for? What was the purpose?
+-Poor Mr.Bigglesworth. He was good man. What happened here? What was the purpose?
 
 scotch glass
+-
+-
 -It's a half empty glass of scotch, Mr.Bigglesworth favorite drink. Maybe he was poisoned?. Better not drink that!
--
--
 
 poison book
--It's a book about poison, written by Douglas Applesteen. One of the pages is dog-eared. Hmmm... the smell reminds me of Scarlet's perfume...
+-Uncle Bigglesworth sure did love books. i wonder how many of these he actually read? "Household Chemicals and Ways to Kill with Them", "Falling Up, Standing Down: A Memoir of a Sad Clown", "Castles and Princesses: A Knight's Tale"... hmmm...  
 -
 -
 
@@ -29,81 +29,82 @@ cable
 -
 
 the purse
--It's Annie's purse. Why do women always needs such large purses? and why is it next to the door? I'm sure she was carrying it earlier...
--Hmmm... Let's see what Mrs. N. keeps in here anyway. OMG, is this a mace?! She took it from the suit of armor! Is this the murder weapon?!
+-
+-Looks like Annie left it here last night. Hmmm... Let's see what Mrs. N. keeps in here anyway. OMG, she hid one of the gold candlesticks in here. Stealing?! That doesn't seem like Annie... Is that blood?!
 -
 
 computer
-- Let's just go ahead and take a look at his email... maybe there'll be a clue. *hacking commences* Ahah! An angry email from Annie! Mad enough to kill?
--Well, well, an angry email from Annie to Mr. Bigglesworth! Must be about that rejected manuscript...
+- Let's just go ahead and take a look at his email... maybe there'll be a clue. *hacking commences* Ahah! How to get rich quick! Let me just forward that to my email...
+-There's a very angry email here from a cutiepieD35@quickmail.com... who's that?
 -
 
 paper scrap
 -
 -
--No my God! A scrap of paper with a 3 on it... Half-Life 3 confirmed! I bet John killed Mr. B. because he wouldn't let John play!
+-No my God! A scrap of paper with a 3 on it... Half-Life 3 confirmed! I bet John killed Mr. B. because he wouldn't let John play! Or it's just a piece of trash... Who can know for sure?
 
 missing weapon
--
 -There looks like there should be a weapon in this statues hands... A sword, maybe? Where did it go?
+-
 -
 
 manuscript
 -
--A manuscript by Annie N. Looks like Mr. Bigglesworth didn't like her ideas. It's all marked up! I doubt she like that...
+-A manuscript by Annie N. Looks like Mr. Bigglesworth didn't like her ideas. It's all marked up! I doubt she liked that... OMG, Annie's email address is cutiepieD35@quickmail.com! I am so making fun of her for this!
 -
 
 book
 -
--
+-It's Mr. Bigglesworth's journal... Looks like him and John haven't been getting along recently. I wonder if it has to do with inheriting the Bigglesworth fortune.
 -
 
 cabinets
 -
 -
--
+-The cabinet is ajar... and some of these chemicals look like they may have been moved around. Bleach and all kinds of cleaning products... hmmm... definitely not non-toxic.
 
 candles
--
+-I'm sure there was a second candlestick here last night at dinner. Where did it go? I remember Annie in particular was interested in Uncle Bigglesworth's gold candlesticks...
 -
 -
 
 chair
--
--
--
+-You know... last night at dinner I thought I felt a little tension between Annie and Mr. Bigglesworth... then again I did have a few drinks... hmmm...
+-Last night's dinner was great. Sooo delicious. It seemed like Annie was being a little cold towards Mr. Bigglesworth, though...
+-I thought I saw some weird looks between Scarlet and Mr. Bigglesworth last night at dinner... I wonder...
 
 knives
--
--
--
+-A knife?! That's used for cutting things!
+-This is a nice knife. It looks like one of those knives you could cut a pineapple straight through with.
+-I don't think Mr. Bigglesworth was stabbed. I didn't see any knife wounds.
 
 leftovers
 -
 -
--
+-This is Mr. Bigglesworth's plate. He was the only one who ate dessert... everyone else was full... hmmm...
 
 pots
 -
 -
--
+-*sniff* Bleach? Or is it just the thyme? I was never a good cook. Scarlet is the cook... hmmm...
 
 scuffs
--
--
--
+-Looks like comething was dragged through here... hmmm...
+-These scuff marks lead from the kitchen...
+-Someone needs to clean this place better.
 
 programmer
 -
--John seems to be in deep thought. Probably thinking about binary numbers and stuff like that...
+-John seems to be in deep thought. Probably thinking about binary numbers and stuff like that... doesn't seem that choked up about his uncle though...
 -John... He's a genius, but an evil genius? Maybe...
-
+0,1,2
 artist
 -Scarlet is so beautiful... oh crap, she's looking at me! Act cool, John! Act coooool...
 -
 -Scarlet... she's a great artist, but I always thought she seemed kind of full of herself...
-
+0,1,2
 writer
--Annie... she is one of the best game story writers in the biz! I loved her work on Duty Calls: The War Cometh
+-Annie... she is one of the best game story writers in the biz! I loved her work on Duty Calls: The War Cometh!
 -Annie... such a weirdo. She seems nice and all, but something about her creeps me out!
 -
+0,1,2
