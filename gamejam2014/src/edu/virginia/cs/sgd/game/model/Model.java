@@ -24,7 +24,7 @@ public class Model {
 
 	private Scanner fileIn;
 	private TiledMap map;
-	private int mapSize = 14;
+	private int mapSize = 49;
 	private Map<Evidence, String> initialIsShown;
 
 	private Queue<String> players;
@@ -38,7 +38,7 @@ public class Model {
 	private boolean journalBool = false; // DELTE THIS
 	private boolean pauseT = false;
 	private boolean accuseBool = false;
-	
+
 	private ArrayList<Integer> accusation;
 	private ArrayList<Integer> correctAccuse;
 
@@ -49,12 +49,11 @@ public class Model {
 		roomTrans = new HashMap<Point, Point>();
 		initialIsShown = new HashMap<Evidence, String>();
 		accusation = new ArrayList<Integer>();
-		
+
 		correctAccuse = new ArrayList<Integer>();
 		correctAccuse.add(1); // which character?
 		correctAccuse.add(2); // which room?
 		correctAccuse.add(3); // which weapon?
-
 
 		this.readInFile();
 
@@ -66,8 +65,9 @@ public class Model {
 			int x = Integer.parseInt((String) o.getProperties().get("x"));
 			int y = Integer.parseInt((String) o.getProperties().get("y"));
 
-			Point p = new Point((int) x, (int) y);
+			Point p = new Point(x, mapSize - y);
 
+			System.out.println(o.getName());
 			evidence.get(o.getName()).setPos(p);
 			System.out.println(o.getName() + " " + x + " " + y);
 		}
@@ -81,7 +81,7 @@ public class Model {
 			int y = mapSize
 					- Integer.parseInt((String) o.getProperties().get("y"));
 
-			Point p = new Point((int) x, (int) y);
+			Point p = new Point(x, y);
 
 			int xNext = Integer.parseInt((String) (rt.get((String) o
 					.getProperties().get("next"))).getProperties().get("x"));
@@ -90,7 +90,7 @@ public class Model {
 							.getProperties().get("next"))).getProperties().get(
 							"y"));
 
-			Point pNext = new Point((int) xNext, (int) yNext);
+			Point pNext = new Point(xNext, yNext);
 
 			roomTrans.put(p, pNext);
 		}
@@ -131,20 +131,20 @@ public class Model {
 	public Boolean getBooleanToShowJournal() {
 		return journalBool;
 	}
-	
+
 	public boolean getBooleanToShowAccuse() {
 		return accuseBool;
 	}
-	
+
 	public void setAccuse() {
 		accuseBool = true;
 	}
-	
+
 	public int getAccuseStateFlag() {
-		//0 means no character accused
-		//1 means character accused
-		//2 means room selected
-		//3 means weapon selected
+		// 0 means no character accused
+		// 1 means character accused
+		// 2 means room selected
+		// 3 means weapon selected
 		return accusation.size();
 	}
 
@@ -285,12 +285,20 @@ public class Model {
 						if (chara.getName().equals("John Nicholson")) {
 							chara.setShown(this.evidence.get("poison book"));
 							chara.setShown(this.evidence.get("computer"));
+							chara.setShown(this.evidence.get("knives"));
+							chara.setShown(this.evidence.get("scuffs"));
 						} else if (chara.getName().equals("Annie N.")) {
 							chara.setShown(this.evidence.get("portrait"));
 							chara.setShown(this.evidence.get("paper scrap"));
+							chara.setShown(this.evidence.get("scotch glass"));
+							chara.setShown(this.evidence.get("knives"));
+							chara.setShown(this.evidence.get("scuffs"));
 						} else if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("snacks"));
 							chara.setShown(this.evidence.get("manuscript"));
+							chara.setShown(this.evidence.get("the purse"));
+							chara.setShown(this.evidence.get("knives"));
+							chara.setShown(this.evidence.get("scuffs"));
 						}
 					}
 
@@ -302,13 +310,7 @@ public class Model {
 
 					if (ev.getName().equals("poison book")) {
 						if (chara.getName().equals("John Nicholson")) {
-							chara.setShown(this.evidence.get("scotch glass"));
-						}
-					}
-
-					if (ev.getName().equals("computer")) {
-						if (chara.getName().equals("John Nicholson")) {
-							chara.setShown(this.evidence.get("the purse"));
+							chara.setShown(this.evidence.get("missing weapon"));
 						}
 					}
 
@@ -327,8 +329,39 @@ public class Model {
 					}
 
 					if (ev.getName().equals("missing weapon")) {
+						if (chara.getName().equals("John Nicholson")) {
+							chara.setShown(this.evidence.get("chair"));
+						}
+					}
+					
+					if (ev.getName().equals("chair")) {
+						if (chara.getName().equals("John Nicholson")) {
+							chara.setShown(this.evidence.get("candles"));
+						}
+					}
+					
+					if (ev.getName().equals("the purse")) {
 						if (chara.getName().equals("Scarlet Velvet")) {
-							chara.setShown(this.evidence.get("the purse"));
+							chara.setShown(this.evidence.get("chair"));
+						}
+					}
+					
+					if (ev.getName().equals("scotch glass")) {
+						if (chara.getName().equals("Annie N.")) {
+							chara.setShown(this.evidence.get("cabinets"));
+						}
+					}
+					
+					if (ev.getName().equals("cabinets")) {
+						if (chara.getName().equals("Annie N.")) {
+							chara.setShown(this.evidence.get("pots"));
+							chara.setShown(this.evidence.get("leftovers"));
+						}
+					}
+					
+					if (ev.getName().equals("cable")) {
+						if (chara.getName().equals("Scarlet Velvet")) {
+							chara.setShown(this.evidence.get("book"));
 						}
 					}
 
@@ -414,11 +447,11 @@ public class Model {
 	public void setMessageOnScreen(String message) {
 		messageOnScreen = message;
 	}
-	
+
 	public boolean getPauseT() {
 		return pauseT;
 	}
-	
+
 	public void togglePauseT() {
 		if (pauseT) {
 			pauseT = false;
@@ -435,21 +468,22 @@ public class Model {
 			accuse();
 		}
 	}
-	
+
 	private void accuse() {
 		if (accusation.equals(correctAccuse))
 			win();
-		else lose();
+		else
+			lose();
 	}
 
 	private void win() {
 		System.out.println("You win!");
-		
+
 	}
 
 	private void lose() {
 		System.out.println("Try again!");
-		
+
 	}
-	
+
 }

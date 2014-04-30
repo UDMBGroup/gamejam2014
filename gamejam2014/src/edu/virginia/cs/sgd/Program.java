@@ -92,6 +92,14 @@ public class Program extends Game implements ApplicationListener {
 		m.load("paper scrap", "data/scraps.png", Texture.class);
 		m.load("poison book", "data/books.png", Texture.class);
 		m.load("the corpse", "data/deadbodies.png", Texture.class);
+		m.load("book", "data/book.png", Texture.class);
+		m.load("candles", "data/candles.png", Texture.class);
+		m.load("chair", "data/kitchenChairs.png", Texture.class);
+		m.load("knives", "data/knives.png", Texture.class);
+		m.load("leftovers", "data/leftovers.png", Texture.class);
+		m.load("pots", "data/pots.png", Texture.class);
+		m.load("scuffs", "data/scuffs.png", Texture.class);
+		m.load("cabinets", "data/cabinets.png", Texture.class);
 
 		m.load("BGMusic", "data/theSituationMainTheme2.wav", Music.class);
 

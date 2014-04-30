@@ -2,7 +2,7 @@ the corpse
 -It's Mr.Bigglesworth dead body. It looks like he was hit in the back of the head...
 -*sniff* Mr.Bigglesworth *sniff* Wait is that a cheeto stain on his collar?
 -Poor Mr.Bigglesworth. He was such a dear friend and was like a father to me. Why would someone slip poison into his mouth for? What was the purpose?
-0,1,2
+
 scotch glass
 -It's a half empty glass of scotch, Mr.Bigglesworth favorite drink. Maybe he was poisoned?. Better not drink that!
 -
@@ -53,18 +53,57 @@ manuscript
 -A manuscript by Annie N. Looks like Mr. Bigglesworth didn't like her ideas. It's all marked up! I doubt she like that...
 -
 
+book
+-
+-
+-
+
+cabinets
+-
+-
+-
+
+candles
+-
+-
+-
+
+chair
+-
+-
+-
+
+knives
+-
+-
+-
+
+leftovers
+-
+-
+-
+
+pots
+-
+-
+-
+
+scuffs
+-
+-
+-
+
 programmer
 -
 -John seems to be in deep thought. Probably thinking about binary numbers and stuff like that...
 -John... He's a genius, but an evil genius? Maybe...
-0,1,2
+
 artist
 -Scarlet is so beautiful... oh crap, she's looking at me! Act cool, John! Act coooool...
 -
 -Scarlet... she's a great artist, but I always thought she seemed kind of full of herself...
-0,1,2
+
 writer
 -Annie... she is one of the best game story writers in the biz! I loved her work on Duty Calls: The War Cometh
 -Annie... such a weirdo. She seems nice and all, but something about her creeps me out!
 -
-0,1,2
