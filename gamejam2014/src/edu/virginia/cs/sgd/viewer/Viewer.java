@@ -1,7 +1,6 @@
 package edu.virginia.cs.sgd.viewer;
 
 import java.util.List;
-import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -325,7 +324,7 @@ public class Viewer {
 		}
 		if (m.getPauseT()) {
 			time.pause();
-		} else if (m.getEndT()){
+		} else if (m.getEndT()) {
 			time.end();
 			m.setEndTimer();
 		} else {

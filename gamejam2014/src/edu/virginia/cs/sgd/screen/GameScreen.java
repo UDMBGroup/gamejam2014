@@ -5,6 +5,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import edu.virginia.cs.sgd.game.Level;
+import edu.virginia.cs.sgd.menu.LoseScreen;
+import edu.virginia.cs.sgd.menu.WinScreen;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 import edu.virginia.cs.sgd.viewer.Viewer;
 
@@ -26,7 +28,7 @@ public class GameScreen extends AbstractScreen {
 				map, 1);
 		viewer = new Viewer(renderer);
 
-		level = new Level(map, viewer);
+		level = new Level(map, viewer, this);
 
 	}
 
@@ -52,5 +54,15 @@ public class GameScreen extends AbstractScreen {
 	@Override
 	public void dispose() {
 		bgMusic.dispose();
+	}
+
+	public void win() {
+		bgMusic.dispose();
+		changeScreen(WinScreen.class);
+	}
+
+	public void lose() {
+		bgMusic.dispose();
+		changeScreen(LoseScreen.class);
 	}
 }

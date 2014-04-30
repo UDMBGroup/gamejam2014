@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import edu.virginia.cs.sgd.input.Input;
 import edu.virginia.cs.sgd.menu.Intro;
-import edu.virginia.cs.sgd.menu.SplashScreen;
 import edu.virginia.cs.sgd.screen.AbstractScreen;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 
@@ -27,7 +26,7 @@ public class Program extends Game implements ApplicationListener {
 		loadImmediateAssets();
 		loadAssets();
 		createScreen(Intro.class);
-		//createScreen(SplashScreen.class);
+		// createScreen(SplashScreen.class);
 	}
 
 	@Override
@@ -112,6 +111,10 @@ public class Program extends Game implements ApplicationListener {
 		m.load("Textbox", "data/textbox.png", Texture.class);
 		m.load("SplashScreen", "data/splashscreen.png", Texture.class);
 		m.load("Intro", "data/intro.png", Texture.class);
+		m.load("Win", "data/win.png", Texture.class);
+		m.load("Lose", "data/lose.png", Texture.class);
+		m.load("Credits", "data/credits.png", Texture.class);
+		m.load("Again", "data/again.png", Texture.class);
 		m.load("writerJ", "data/writerJ.png", Texture.class);
 		m.load("programmerJ", "data/programmerJ.png", Texture.class);
 		m.load("artistJ", "data/artistJ.png", Texture.class);

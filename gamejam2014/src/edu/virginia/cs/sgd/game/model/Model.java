@@ -16,6 +16,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 
+import edu.virginia.cs.sgd.menu.SplashScreen;
+import edu.virginia.cs.sgd.screen.GameScreen;
 import edu.virginia.cs.sgd.util.Point;
 import edu.virginia.cs.sgd.util.SingletonAssetManager;
 import edu.virginia.cs.sgd.viewer.RenderData;
@@ -24,6 +26,7 @@ public class Model {
 
 	private Scanner fileIn;
 	private TiledMap map;
+	private GameScreen g;
 	private int mapSize = 49;
 	private Map<Evidence, String> initialIsShown;
 
@@ -33,7 +36,7 @@ public class Model {
 	private Map<String, Character> characters;
 	private Map<Point, Point> roomTrans;
 
-	private String messageOnScreen = "[Enter - switch characters, Z - interact, Esc - end timer early]";
+	private String messageOnScreen = "[Enter - switch characters, Z - interact, J - toggle journal, Esc - end timer early]";
 
 	private boolean journalBool = false; // DELTE THIS
 	private boolean pauseT = false;
@@ -43,8 +46,9 @@ public class Model {
 	private ArrayList<Integer> accusation;
 	private ArrayList<Integer> correctAccuse;
 
-	public Model(TiledMap map) {
+	public Model(TiledMap map, GameScreen g) {
 		this.map = map;
+		this.g = g;
 		evidence = new HashMap<String, Evidence>();
 		characters = new HashMap<String, Character>();
 		roomTrans = new HashMap<Point, Point>();
@@ -52,7 +56,7 @@ public class Model {
 		accusation = new ArrayList<Integer>();
 
 		correctAccuse = new ArrayList<Integer>();
-		correctAccuse.add(1); // which character?
+		correctAccuse.add(3); // which character?
 		correctAccuse.add(2); // which room?
 		correctAccuse.add(3); // which weapon?
 
@@ -482,12 +486,12 @@ public class Model {
 
 	private void win() {
 		System.out.println("You win!");
-
+		g.win();
 	}
 
 	private void lose() {
 		System.out.println("Try again!");
-
+		g.lose();
 	}
 
 	public boolean getEndT() {
