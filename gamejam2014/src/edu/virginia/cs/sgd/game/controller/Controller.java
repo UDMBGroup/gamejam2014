@@ -23,6 +23,9 @@ public class Controller {
 				"Key: " + Input.Keys.toString(keyCode));
 
 		switch (keyCode) {
+		case Input.Keys.ESCAPE:
+			m.endTimer();
+			break;
 		case Input.Keys.W:
 		case Input.Keys.UP:
 			if (!m.getBooleanToShowJournal() && !m.getBooleanToShowAccuse()) {

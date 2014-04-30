@@ -33,6 +33,10 @@ public class Timer {
 		return current;
 	}
 	
+	public void end() {
+		current = 1;
+	}
+	
 	public String toString() {
 		int min = current/60;
 		int sec = current%60;
@@ -50,6 +54,8 @@ public class Timer {
 				if (pause) {
 					i++;
 					continue;
+				} else if (current == 0) {
+					break;
 				}
 				try {
 					Thread.sleep(1000);

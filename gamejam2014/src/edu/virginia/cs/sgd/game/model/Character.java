@@ -44,18 +44,22 @@ public class Character extends RenderData {
 			}
 		}
 	}
+
 	/**
 	 * @return the journIter
 	 */
 	public ListIterator<Evidence> getJournIter() {
 		return journIter;
 	}
+
 	/**
-	 * @param journIter the journIter to set
+	 * @param journIter
+	 *            the journIter to set
 	 */
 	public void setJournIter(ListIterator<Evidence> journIter) {
 		this.journIter = journIter;
 	}
+
 	/**
 	 * @return the journalEvidenceName
 	 */
@@ -64,7 +68,8 @@ public class Character extends RenderData {
 	}
 
 	/**
-	 * @param journalEvidenceName the journalEvidenceName to set
+	 * @param journalEvidenceName
+	 *            the journalEvidenceName to set
 	 */
 	public void setJournalEvidenceName(String journalEvidenceName) {
 		this.journalEvidenceName = journalEvidenceName;
@@ -78,14 +83,16 @@ public class Character extends RenderData {
 	}
 
 	/**
-	 * @param journalEvidenceMono the journalEvidenceMono to set
+	 * @param journalEvidenceMono
+	 *            the journalEvidenceMono to set
 	 */
 	public void setJournalEvidenceMono(String journalEvidenceMono) {
 		this.journalEvidenceMono = journalEvidenceMono;
 	}
 
 	/**
-	 * @param journalIterator the journalIterator to set
+	 * @param journalIterator
+	 *            the journalIterator to set
 	 */
 	public void setJournalIterator(LinkedList<Evidence> journalIterator) {
 		this.journalIterator = journalIterator;
@@ -147,7 +154,7 @@ public class Character extends RenderData {
 	public int getCharAssignment() {
 		return charAssignment;
 	}
-	
+
 	public void setPos(Point p) {
 		super.pos = p;
 	}

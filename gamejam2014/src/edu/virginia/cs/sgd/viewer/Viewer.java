@@ -48,7 +48,7 @@ public class Viewer {
 				"programmerJ");
 		artistJournal = SingletonAssetManager.getInstance().get("artistJ");
 		time = new Timer();
-		
+
 		setAccuseTexts();
 
 		updateCamera();
@@ -57,10 +57,10 @@ public class Viewer {
 
 	private void setAccuseTexts() {
 		characterAccuseText = "Select a character!";
-		
+
 		roomAccuseText = "Select a room!";
-		
-		weaponAccuseText = "Select a weapon!";		
+
+		weaponAccuseText = "Select a weapon!";
 	}
 
 	public void dispose() {
@@ -204,41 +204,53 @@ public class Viewer {
 		} else if (m.getBooleanToShowAccuse()) {
 			batch.draw(textBoxTexture, currentCenter.getX() * 32 - 225,
 					currentCenter.getY() * 32 - 145, 480, 320);
-			//write message to choose character/weapon/room
+			// write message to choose character/weapon/room
 			switch (m.getAccuseStateFlag()) {
-				case 0:
-					//show character text
-					font.draw(batch, characterAccuseText, currentCenter.getX() * 32 - 50,
-							currentCenter.getY() * 32 + 50);
-					font.draw(batch, "1. The Programmer", currentCenter.getX() * 32 - 200,
-							currentCenter.getY() * 32 + 20);
-					font.draw(batch, "2. The Artist", currentCenter.getX() * 32 - 50,
-							currentCenter.getY() * 32 + 20);
-					font.draw(batch, "3. The Writer", currentCenter.getX() * 32 + 100,
-							currentCenter.getY() * 32 + 20);
-					break;
-				case 1:
-					//show room text
-					font.draw(batch, roomAccuseText, currentCenter.getX() * 32 - 50,
-							currentCenter.getY() * 32 + 50);
-					font.draw(batch, "1. The Study", currentCenter.getX() * 32 - 200,
-							currentCenter.getY() * 32 + 20);
-					font.draw(batch, "2. The Kitchen", currentCenter.getX() * 32 - 50,
-							currentCenter.getY() * 32 + 20);
-					font.draw(batch, "3. The Dining Room", currentCenter.getX() * 32 + 100,
-							currentCenter.getY() * 32 + 20);
-					break;
-				case 2:
-					//show weapon text
-					font.draw(batch, weaponAccuseText, currentCenter.getX() * 32 - 50,
-							currentCenter.getY() * 32 + 50);
-					font.draw(batch, "1. The Cable", currentCenter.getX() * 32 - 200,
-							currentCenter.getY() * 32 + 20);
-					font.draw(batch, "2. The Poison", currentCenter.getX() * 32 - 50,
-							currentCenter.getY() * 32 + 20);
-					font.draw(batch, "3. The Candlestick", currentCenter.getX() * 32 + 100,
-							currentCenter.getY() * 32 + 20);
-					break;
+			case 0:
+				// show character text
+				font.draw(batch, characterAccuseText,
+						currentCenter.getX() * 32 - 50,
+						currentCenter.getY() * 32 + 50);
+				font.draw(batch, "1. The Programmer",
+						currentCenter.getX() * 32 - 200,
+						currentCenter.getY() * 32 + 20);
+				font.draw(batch, "2. The Artist",
+						currentCenter.getX() * 32 - 50,
+						currentCenter.getY() * 32 + 20);
+				font.draw(batch, "3. The Writer",
+						currentCenter.getX() * 32 + 100,
+						currentCenter.getY() * 32 + 20);
+				break;
+			case 1:
+				// show room text
+				font.draw(batch, roomAccuseText,
+						currentCenter.getX() * 32 - 50,
+						currentCenter.getY() * 32 + 50);
+				font.draw(batch, "1. The Study",
+						currentCenter.getX() * 32 - 200,
+						currentCenter.getY() * 32 + 20);
+				font.draw(batch, "2. The Kitchen",
+						currentCenter.getX() * 32 - 50,
+						currentCenter.getY() * 32 + 20);
+				font.draw(batch, "3. The Dining Room",
+						currentCenter.getX() * 32 + 100,
+						currentCenter.getY() * 32 + 20);
+				break;
+			case 2:
+				// show weapon text
+				font.draw(batch, weaponAccuseText,
+						currentCenter.getX() * 32 - 50,
+						currentCenter.getY() * 32 + 50);
+				font.draw(batch, "1. The Cable",
+						currentCenter.getX() * 32 - 200,
+						currentCenter.getY() * 32 + 20);
+				font.draw(batch, "2. The Poison",
+						currentCenter.getX() * 32 - 50,
+						currentCenter.getY() * 32 + 20);
+				font.draw(batch, "3. The Candlestick",
+						currentCenter.getX() * 32 + 100,
+						currentCenter.getY() * 32 + 20);
+				break;
 			}
 		} else {
 			List<RenderData> listRData = m.getRenderData();
@@ -313,13 +325,16 @@ public class Viewer {
 		}
 		if (m.getPauseT()) {
 			time.pause();
+		} else if (m.getEndT()){
+			time.end();
+			m.setEndTimer();
 		} else {
 			time.resume();
-			if (time.getCurrentTime()==0) {
+			if (time.getCurrentTime() == 0) {
 				m.setAccuse();
-			}
-			else {
-				font.draw(batch, time.toString(), currentCenter.getX() * 32 + 215,
+			} else {
+				font.draw(batch, time.toString(),
+						currentCenter.getX() * 32 + 215,
 						currentCenter.getY() * 32 - 120);
 			}
 		}

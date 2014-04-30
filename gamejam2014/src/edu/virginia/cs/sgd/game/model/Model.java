@@ -33,10 +33,11 @@ public class Model {
 	private Map<String, Character> characters;
 	private Map<Point, Point> roomTrans;
 
-	private String messageOnScreen = "Oh No! We are at the Global Game Jam, and we were arguing while brainstorming ideas! The lights went out, now Mr. Bigglesworth is dead! Who dunnit?! [Enter - switch characters, Z - interact]";
+	private String messageOnScreen = "[Enter - switch characters, Z - interact, Esc - end timer early]";
 
 	private boolean journalBool = false; // DELTE THIS
 	private boolean pauseT = false;
+	private boolean endT = false;
 	private boolean accuseBool = false;
 
 	private ArrayList<Integer> accusation;
@@ -322,8 +323,9 @@ public class Model {
 					}
 
 					if (ev.getName().equals("computer")) {
-						if (chara.getName().equals("Scarlet Velvet") && characters.get("artist").getIsCollected(
-								evidence.get("manuscript"))) {
+						if (chara.getName().equals("Scarlet Velvet")
+								&& characters.get("artist").getIsCollected(
+										evidence.get("manuscript"))) {
 							chara.setShown(this.evidence.get("the purse"));
 						}
 					}
@@ -333,27 +335,26 @@ public class Model {
 							chara.setShown(this.evidence.get("chair"));
 						}
 					}
-					
+
 					if (ev.getName().equals("chair")) {
 						if (chara.getName().equals("John Nicholson")) {
 							chara.setShown(this.evidence.get("candles"));
 						}
 					}
-					
-					
+
 					if (ev.getName().equals("scotch glass")) {
 						if (chara.getName().equals("Annie N.")) {
 							chara.setShown(this.evidence.get("cabinets"));
 						}
 					}
-					
+
 					if (ev.getName().equals("cabinets")) {
 						if (chara.getName().equals("Annie N.")) {
 							chara.setShown(this.evidence.get("pots"));
 							chara.setShown(this.evidence.get("leftovers"));
 						}
 					}
-					
+
 					if (ev.getName().equals("cable")) {
 						if (chara.getName().equals("Scarlet Velvet")) {
 							chara.setShown(this.evidence.get("book"));
@@ -470,6 +471,14 @@ public class Model {
 		else
 			lose();
 	}
+	
+	public void endTimer() {
+		endT = true;
+	}
+	
+	public void setEndTimer() {
+		endT = false;
+	}
 
 	private void win() {
 		System.out.println("You win!");
@@ -479,6 +488,10 @@ public class Model {
 	private void lose() {
 		System.out.println("Try again!");
 
+	}
+
+	public boolean getEndT() {
+		return endT;
 	}
 
 }
